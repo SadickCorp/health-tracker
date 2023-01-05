@@ -1,6 +1,7 @@
 package com.example.springboot.services;
 
 import com.example.springboot.beans.Profil;
+import com.example.springboot.dto.light.LightProfilDto;
 import com.example.springboot.repository.ProfilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,15 @@ public class ServiceProfil implements IServiceProfil{
         return this.profilRepository.findById(id).get();
     }
 
-    public void addProfil(Profil pprofil) {
-        this.profilRepository.saveAndFlush(pprofil);
+    public Profil addProfil(Profil pprofil) {
+        return this.repository.saveAndFlush(pprofil);
     }
 
-    public void updateProfil(Profil pprofil) {
-        this.profilRepository.saveAndFlush(pprofil);
+    public Profil updateProfil(long id, LightProfilDto lightProfilDto) {
+        Profil pprofil = this.getProfil(id);
+        pprofil.update(lightProfilDto);
+
+        return this.repository.saveAndFlush(pprofil);
     }
 
     public void deleteProfil(long id) {
