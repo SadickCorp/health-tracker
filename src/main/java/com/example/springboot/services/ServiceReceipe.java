@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service()
 public class ServiceReceipe implements IServiceReceipe{
@@ -22,7 +23,7 @@ public class ServiceReceipe implements IServiceReceipe{
 
     public Receipe geReceipeById(long id) {
 
-        return this.repository.findById(id).get();
+        return this.repository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
     }
 
     public void addReceipe(Receipe preceipe) {

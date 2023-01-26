@@ -4,6 +4,8 @@ import com.example.springboot.beans.Goal;
 import com.example.springboot.repository.GoalRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 
 @Service
 public class ServiceGoal implements IServiceGoal {
@@ -16,7 +18,7 @@ public class ServiceGoal implements IServiceGoal {
 
     public Goal getGoalById(long id) {
 
-        return this.repository.findById(id).get();
+        return this.repository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
     }
 
 

@@ -5,8 +5,7 @@ import com.example.springboot.dto.light.LightUserDto;
 import com.example.springboot.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 @Service()
 public class ServiceUser implements IServiceUser {
@@ -21,7 +20,8 @@ public class ServiceUser implements IServiceUser {
 
     @Override
     public User getUserById(long id) {
-        return this.userRepository.findById(id).get();
+
+        return this.userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
     }
 
     @Override
