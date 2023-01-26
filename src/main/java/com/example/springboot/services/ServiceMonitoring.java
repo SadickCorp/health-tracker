@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service()
@@ -23,8 +24,8 @@ public class ServiceMonitoring implements IServiceMonitoring{
 
 
     public Monitoring getMonitoringById(long id) {
-        Optional<Monitoring> monitoring = this.repository.findById(id);
-        return monitoring.get();
+        Monitoring monitoring = this.repository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));;
+        return monitoring;
     }
 
 

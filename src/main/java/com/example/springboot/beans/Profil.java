@@ -1,15 +1,20 @@
 package com.example.springboot.beans;
 
+import com.example.springboot.dto.light.LightProfilDto;
 import com.example.springboot.enums.EFoodPreference;
 import com.example.springboot.enums.EUserSexe;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Date;
 
 @Entity()
 @Table(name="profil")
+@Getter
+@Setter
 public class Profil {
     @Id
     @Column(name = "id", nullable = false)
@@ -25,8 +30,9 @@ public class Profil {
     @Column(name = "height")
     private double height;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "sexe")
-    private Enum<EUserSexe> sexe;
+    private EUserSexe sexe;
 
     @Column(name = "created_at")
     private LocalDate created_at;
@@ -37,113 +43,34 @@ public class Profil {
     @Column(name = "weight")
     private double weight;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "food_preference")
-    private Enum<EFoodPreference> food_preference;
+    private EFoodPreference food_preference;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "profil")
     private User user_id;
 
     @ManyToOne
     private Monitoring monitoring;
 
     @ManyToOne
-    private Receipe receipe;
+    private Meal meal;
 
     @ManyToOne
     private Goal goal;
 
-    @Transient
-    private Integer age;
+    public Profil(){
+        this.setCreated_at(LocalDate.now());
+    }
+    public void update(LightProfilDto lightProfilDto){
+        this.setName(lightProfilDto.getName() != null ? lightProfilDto.getName() : this.getName());
+        this.setSurname(lightProfilDto.getSurname() != null ? lightProfilDto.getSurname() : this.getSurname());
+        this.setHeight(lightProfilDto.getHeight() != 0.0d ? lightProfilDto.getHeight() : this.getHeight());
+        this.setSexe(lightProfilDto.getSexe() != null ? lightProfilDto.getSexe() : this.getSexe());
+        this.setBirth(lightProfilDto.getBirth() != null ? lightProfilDto.getBirth() : this.getBirth());
+        this.setWeight(lightProfilDto.getWeight() != 0.0d ? lightProfilDto.getWeight() : this.getWeight());
+        this.setFood_preference(lightProfilDto.getFood_preference() != null ? lightProfilDto.getFood_preference() : this.getFood_preference());
 
-    public Profil() {
     }
 
-    public Profil(Long id, String name, String surname,
-                  double weight, double height, User user_id, int age){
-
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.weight =weight;
-        this.height = height;
-        this.user_id = user_id;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public Enum getSexe() {
-        return sexe;
-    }
-
-    public void setSexe(Enum sexe) {
-        this.sexe = sexe;
-    }
-
-    public LocalDate getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(LocalDate created_at) {
-        this.created_at = created_at;
-    }
-
-    public LocalDate getBirth() {
-        return birth;
-    }
-
-    public void setBirth(LocalDate birth) {
-        this.birth = birth;
-    }
-
-    public double getWeight(double weight) {
-        return this.weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public Enum getFood_preference() {
-        return food_preference;
-    }
-
-    public void setFood_preference(Enum food_preference) {
-        this.food_preference = food_preference;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public int getAge(){
-        return Period.between(this.birth, LocalDate.now()).getYears();
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

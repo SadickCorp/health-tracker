@@ -5,6 +5,7 @@ import com.example.springboot.repository.FoodCompositionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service()
 public class ServiceFoodComposition implements IServiceFoodComposition{
@@ -16,7 +17,7 @@ public class ServiceFoodComposition implements IServiceFoodComposition{
     }
     public FoodComposition getFoodCompositionById(long id) {
 
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
     }
 
 
