@@ -1,4 +1,5 @@
 package com.example.springboot.beans;
+import com.example.springboot.dto.light.LightGoalDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,4 +30,10 @@ public class Goal {
 
     @OneToOne
     private Profil profil;
+
+    public void update(LightGoalDto lightGoalDto){
+        this.setGoal_weight(lightGoalDto.getGoal_weight()!= 0.0d ? lightGoalDto.getGoal_weight() : this.getGoal_weight());
+        this.setActual_weight(lightGoalDto.getActual_weight()!= 0.0d ? lightGoalDto.getActual_weight() : this.getActual_weight());
+        this.setStart_weight(lightGoalDto.getStart_weight()!= 0.0d ? lightGoalDto.getStart_weight() : this.getStart_weight());
+    }
 }

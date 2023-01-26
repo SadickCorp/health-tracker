@@ -26,8 +26,7 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "profil_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "user")
     private Profil profil;
 
     public void update(LightUserDto lightUserDto){

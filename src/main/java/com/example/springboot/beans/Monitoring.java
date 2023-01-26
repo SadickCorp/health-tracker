@@ -13,7 +13,6 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "monitoring")
 public class Monitoring {
     @Id
@@ -31,4 +30,7 @@ public class Monitoring {
     @JoinColumn(name = "profil_id")
     private Profil profil;
 
+    public Monitoring(){
+        this.setDate(LocalDate.now());
+    }
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity()
@@ -46,20 +47,22 @@ public class Profil {
     @Column(name = "food_preference")
     private EFoodPreference food_preference;
 
-    @OneToOne(mappedBy = "profil")
-    private User user_id;
+    @OneToOne
+    private User user;
 
     @OneToMany(mappedBy = "profil")
-    private List<Monitoring> monitoring;
+    private List<Monitoring> monitorings;
 
     @OneToMany(mappedBy = "profil")
-    private List<Recipe> recipe;
+    private List<Recipe> recipes;
 
     @OneToOne(mappedBy = "profil")
     private Goal goal;
 
     public Profil(){
         this.setCreated_at(LocalDate.now());
+        this.setMonitorings(new ArrayList<Monitoring>());
+        this.setRecipes(new ArrayList<Recipe>());
     }
     public void update(LightProfilDto lightProfilDto){
         this.setName(lightProfilDto.getName() != null ? lightProfilDto.getName() : this.getName());

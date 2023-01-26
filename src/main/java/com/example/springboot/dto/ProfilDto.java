@@ -6,7 +6,9 @@ import com.example.springboot.enums.EUserSexe;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 /**
  * A DTO for the {@link Profil} entity
@@ -18,12 +20,12 @@ public class ProfilDto implements Serializable {
     private final String surname;
     private final Integer height;
     private final EUserSexe sexe;
-    private final Date created_at;
-    private final Date birth;
+    private final LocalDate created_at;
+    private final LocalDate birth;
     private final Integer weight;
     private final EFoodPreference food_preference;
-    private final UserDto user_id;
-    private final MonitoringDto monitoring;
-    private final RecipeDto meal;
+    private final long user_id;
+    private final List<MonitoringDto> monitorings;
+    private final List<RecipeDto> meal;
     private final GoalDto goal;
 }

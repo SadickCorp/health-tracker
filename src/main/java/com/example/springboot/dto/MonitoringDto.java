@@ -3,6 +3,7 @@ package com.example.springboot.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -11,6 +12,7 @@ import java.util.Date;
 @Data
 public class MonitoringDto implements Serializable {
     private final Long id;
-    private final Integer weight;
-    private final Date date;
+    private final double weight;
+    private final LocalDate date;
+    private final long profil_id;
 }

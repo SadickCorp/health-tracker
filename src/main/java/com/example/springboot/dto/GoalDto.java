@@ -10,7 +10,8 @@ import java.io.Serializable;
 @Data
 public class GoalDto implements Serializable {
     private final Long id;
-    private final Integer actual_weight;
-    private final Integer goal_weight;
-    private final Integer start_weight;
+    private final double actual_weight;
+    private final double goal_weight;
+    private final double start_weight;
+    private final Long profil_id;
 }

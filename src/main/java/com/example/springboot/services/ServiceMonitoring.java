@@ -7,24 +7,22 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service()
 public class ServiceMonitoring implements IServiceMonitoring{
 
-    private MonitoringRepository repository;
+    private final MonitoringRepository monitoringRepository;
 
-    public ServiceMonitoring(MonitoringRepository repository){
-        this.repository =repository;
+    public ServiceMonitoring(MonitoringRepository monitoringRepository){
+        this.monitoringRepository = monitoringRepository;
     }
     public List<Monitoring> getMonitoringByProfilId(long id) {
-        //TODO
-        return null;
+        return this.monitoringRepository.getMonitoringByIdProfil(id);
     }
 
 
     public Monitoring getMonitoringById(long id) {
-        Monitoring monitoring = this.repository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));;
+        Monitoring monitoring = this.monitoringRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));;
         return monitoring;
     }
 
@@ -35,15 +33,15 @@ public class ServiceMonitoring implements IServiceMonitoring{
         return null;
     }
 
-    public void addMonitoring(Monitoring monitoring) {
-        this.repository.saveAndFlush(monitoring);
+    public Monitoring addMonitoring(Monitoring monitoring) {
+        return this.monitoringRepository.saveAndFlush(monitoring);
     }
 
-    public void updateMonitoring(Monitoring monitoring) {
-        this.repository.saveAndFlush(monitoring);
+    public Monitoring updateMonitoring(Monitoring monitoring) {
+         return this.monitoringRepository.saveAndFlush(monitoring);
     }
 
     public void deleteMonitoring(long id) {
-        this.repository.deleteById(id);
+        this.monitoringRepository.deleteById(id);
     }
 }

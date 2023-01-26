@@ -2,27 +2,32 @@ package com.example.springboot.controllers;
 
 
 import com.example.springboot.beans.Profil;
+import com.example.springboot.beans.User;
 import com.example.springboot.dto.ProfilDto;
 import com.example.springboot.dto.light.LightProfilDto;
 import com.example.springboot.mappers.ProfilMapper;
 import com.example.springboot.services.ServiceProfil;
+import com.example.springboot.services.ServiceUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/profils" )
+@RequestMapping("profil" )
 public class ProfilController {
     private final ServiceProfil serviceProfil;
-    public ProfilController(ServiceProfil serviceProfil){
-
+    private final ServiceUser serviceUser;
+    public ProfilController(ServiceProfil serviceProfil, ServiceUser serviceUser){
         this.serviceProfil = serviceProfil;
+        this.serviceUser = serviceUser;
     }
 
     @PostMapping(value = "")
     public ResponseEntity<ProfilDto> create(@RequestBody LightProfilDto dto){
         Profil profil = ProfilMapper.INSTANCE.toBo(dto);
+        User user = this.serviceUser.getUserById(dto.getUser_id());
+        profil.setUser(user);
         profil = this.serviceProfil.addProfil(profil);
         ProfilDto profilDto = ProfilMapper.INSTANCE.toDto(profil);
         return ResponseEntity.ok(profilDto);

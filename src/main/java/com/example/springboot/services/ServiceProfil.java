@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 @Service()
 public class ServiceProfil implements IServiceProfil{
 
-    private ProfilRepository profilRepository;
+    private final ProfilRepository profilRepository;
 
     public ServiceProfil(ProfilRepository profilRepository)
     {
