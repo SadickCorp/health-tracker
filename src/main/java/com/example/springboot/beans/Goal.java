@@ -1,7 +1,16 @@
 package com.example.springboot.beans;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity()
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "goal")
 public class Goal {
     @Id
@@ -18,11 +27,6 @@ public class Goal {
     @Column(name = "start_weight")
     private double start_weight;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToOne
+    private Profil profil;
 }

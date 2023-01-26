@@ -1,10 +1,6 @@
 package com.example.springboot.dto;
 
 import com.example.springboot.beans.Profil;
-import com.example.springboot.dto.GoalDto;
-import com.example.springboot.dto.MealDto;
-import com.example.springboot.dto.MonitoringDto;
-import com.example.springboot.dto.UserDto;
 import com.example.springboot.enums.EFoodPreference;
 import com.example.springboot.enums.EUserSexe;
 import lombok.Data;
@@ -28,6 +24,6 @@ public class ProfilDto implements Serializable {
     private final EFoodPreference food_preference;
     private final UserDto user_id;
     private final MonitoringDto monitoring;
-    private final MealDto meal;
+    private final RecipeDto meal;
     private final GoalDto goal;
 }

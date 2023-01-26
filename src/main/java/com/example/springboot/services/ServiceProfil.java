@@ -6,6 +6,7 @@ import com.example.springboot.repository.ProfilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service()
@@ -18,18 +19,18 @@ public class ServiceProfil implements IServiceProfil{
         this.profilRepository = profilRepository;
     }
     public Profil getProfil(long id) {
-        return this.repository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
+        return this.profilRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
     }
 
     public Profil addProfil(Profil pprofil) {
-        return this.repository.saveAndFlush(pprofil);
+        return this.profilRepository.saveAndFlush(pprofil);
     }
 
     public Profil updateProfil(long id, LightProfilDto lightProfilDto) {
         Profil pprofil = this.getProfil(id);
         pprofil.update(lightProfilDto);
 
-        return this.repository.saveAndFlush(pprofil);
+        return this.profilRepository.saveAndFlush(pprofil);
     }
 
     public void deleteProfil(long id) {

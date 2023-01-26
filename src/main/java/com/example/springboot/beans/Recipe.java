@@ -1,15 +1,23 @@
 package com.example.springboot.beans;
 
-import com.example.springboot.enums.EReceipeCategory;
-import com.example.springboot.enums.EReceipeType;
+import com.example.springboot.enums.ERecipeCategory;
+import com.example.springboot.enums.ERecipeType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
 @Entity()
-@Table(name = "meal")
-public class Meal {
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "recipe")
+public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,23 +31,21 @@ public class Meal {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private EReceipeType type;
+    private ERecipeType type;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category")
-    private EReceipeCategory category;
+    private ERecipeCategory category;
 
     @Column(name = "is_favorite")
     private Boolean is_favorite;
 
+    @OneToMany(mappedBy = "recipe")
+    private List<Food> food;
+
     @ManyToOne
-    private Food food;
+    @JoinColumn(name = "profil_id")
+    private Profil profil;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

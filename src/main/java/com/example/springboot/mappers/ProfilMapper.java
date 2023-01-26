@@ -17,7 +17,7 @@ public interface ProfilMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "monitoring", ignore = true)
     @Mapping(target = "user_id", ignore = true)
-    @Mapping(target = "meal", ignore = true)
+    @Mapping(target = "recipe", ignore = true)
     @Mapping(target = "goal", ignore = true)
     @Mapping(target = "created_at", ignore = true)
     Profil toBo(LightProfilDto dto);

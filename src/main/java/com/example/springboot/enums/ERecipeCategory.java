@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum EReceipeCategory {
+public enum ERecipeCategory {
     BREAKFAST("BF"),
     LUNCH("L"),
     DINER("DINER"),

@@ -4,12 +4,11 @@ import com.example.springboot.dto.light.LightProfilDto;
 import com.example.springboot.enums.EFoodPreference;
 import com.example.springboot.enums.EUserSexe;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
 @Entity()
 @Table(name="profil")
@@ -50,13 +49,13 @@ public class Profil {
     @OneToOne(mappedBy = "profil")
     private User user_id;
 
-    @ManyToOne
-    private Monitoring monitoring;
+    @OneToMany(mappedBy = "profil")
+    private List<Monitoring> monitoring;
 
-    @ManyToOne
-    private Meal meal;
+    @OneToMany(mappedBy = "profil")
+    private List<Recipe> recipe;
 
-    @ManyToOne
+    @OneToOne(mappedBy = "profil")
     private Goal goal;
 
     public Profil(){
