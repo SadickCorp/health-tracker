@@ -19,6 +19,7 @@ public interface RecipeMapper {
 
     @Mapping(target = "food", ignore = true)
     @Mapping(target = "profil", ignore = true)
+    @Mapping(target = "date", ignore = true)
     Recipe toBo(LightRecipeDto dto);
 
     @Mapping(target = "profil_id", source="profil.id")

@@ -25,7 +25,7 @@ public class ServiceRecipe implements IServiceRecipe {
     }
 
     public List<Recipe> geRecipesByProfilId(final long id) {
-        return null;
+        return this.recipeRepository.getRecipeByProfilId(id);
     }
 
     public Recipe addRecipe(Recipe preceipe) {

@@ -32,26 +32,26 @@ public class RecipeController {
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping("/{profilId}/{date}")
+    @GetMapping(value = "/{profilId}", params = {"date"})
     public ResponseEntity<List<RecipeDto>> getRecipesByDate(@PathVariable("profilId") long profilId,
-                                                            @PathVariable("date")LocalDate date){
+                                                            @RequestParam("date")LocalDate date){
         List<Recipe> recipeList = this.serviceRecipe.getRecipeByDate(profilId, date);
         List<RecipeDto> dtos = RecipeMapper.INSTANCE.toDtoList(recipeList);
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping("/{profilId}/{startDate}/{endDate}")
+    @GetMapping(value = "/{profilId}", params = {"startDate", "endDate"})
     public ResponseEntity<List<RecipeDto>> getRecipesbetweenDate(@PathVariable("profilId") long profilId,
-                                                                 @PathVariable("startDate") LocalDate startDate,
-                                                                 @PathVariable("endDate") LocalDate endDate){
+                                                                 @RequestParam("startDate") LocalDate startDate,
+                                                                 @RequestParam("endDate") LocalDate endDate){
         List<Recipe> recipeList = this.serviceRecipe.getRecipeBetweenDate(profilId, startDate, endDate);
         List<RecipeDto> dtos = RecipeMapper.INSTANCE.toDtoList(recipeList);
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping("/{profilId}/{category}")
+    @GetMapping(value = "/{profilId}", params = {"cat"})
     public ResponseEntity<List<RecipeDto>> getRecipesByCategory(@PathVariable("profilId") long profilId,
-                                                                @PathVariable("category")ERecipeCategory category){
+                                                                @RequestParam("cat")ERecipeCategory category){
         List<Recipe> recipeList = this.serviceRecipe.getRecipeByCat(profilId, category);
         List<RecipeDto> dtos = RecipeMapper.INSTANCE.toDtoList(recipeList);
         return ResponseEntity.ok(dtos);
