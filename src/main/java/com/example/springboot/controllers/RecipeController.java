@@ -3,12 +3,12 @@ package com.example.springboot.controllers;
 import com.example.springboot.beans.Profil;
 import com.example.springboot.beans.Recipe;
 import com.example.springboot.dto.RecipeDto;
-import com.example.springboot.dto.light.LightMonitoringDto;
 import com.example.springboot.dto.light.LightRecipeDto;
 import com.example.springboot.enums.ERecipeCategory;
 import com.example.springboot.mappers.RecipeMapper;
 import com.example.springboot.services.ServiceProfil;
 import com.example.springboot.services.ServiceRecipe;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +34,7 @@ public class RecipeController {
 
     @GetMapping(value = "/{profilId}", params = {"date"})
     public ResponseEntity<List<RecipeDto>> getRecipesByDate(@PathVariable("profilId") long profilId,
-                                                            @RequestParam("date")LocalDate date){
+                                                            @RequestParam("date") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date){
         List<Recipe> recipeList = this.serviceRecipe.getRecipeByDate(profilId, date);
         List<RecipeDto> dtos = RecipeMapper.INSTANCE.toDtoList(recipeList);
         return ResponseEntity.ok(dtos);
@@ -42,8 +42,8 @@ public class RecipeController {
 
     @GetMapping(value = "/{profilId}", params = {"startDate", "endDate"})
     public ResponseEntity<List<RecipeDto>> getRecipesbetweenDate(@PathVariable("profilId") long profilId,
-                                                                 @RequestParam("startDate") LocalDate startDate,
-                                                                 @RequestParam("endDate") LocalDate endDate){
+                                                                 @RequestParam("startDate") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate startDate,
+                                                                 @RequestParam("endDate") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate endDate){
         List<Recipe> recipeList = this.serviceRecipe.getRecipeBetweenDate(profilId, startDate, endDate);
         List<RecipeDto> dtos = RecipeMapper.INSTANCE.toDtoList(recipeList);
         return ResponseEntity.ok(dtos);

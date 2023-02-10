@@ -19,7 +19,7 @@ public class ServiceFood implements IServiceFood{
 
 
     public List<Food> getFoodByReceipe(long receipe_id){
-            return foodRepository.findAll();
+            return foodRepository.getFoodByRecipeId(receipe_id);
     }
 
     public Food getFoodById(long id) {

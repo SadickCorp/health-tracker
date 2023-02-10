@@ -2,13 +2,11 @@ package com.example.springboot.controllers;
 
 import com.example.springboot.beans.Food;
 import com.example.springboot.dto.FoodDto;
+import com.example.springboot.mappers.FoodMapper;
 import com.example.springboot.services.ServiceFood;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,14 +21,19 @@ public class FoodController {
         this.serviceFood = serviceFood;
     }
 
-    @GetMapping()
-    public List<Food> index(){
-        return serviceFood.getFoodByReceipe(1);
-    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Food> findOne(@PathVariable("id") Long id){
+    public ResponseEntity<FoodDto> findById(@PathVariable("id") Long id){
         Food food = this.serviceFood.getFoodById(id);
-        return ResponseEntity.ok(food);
+        FoodDto dto = FoodMapper.INSTANCE.toDto(food);
+        return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping(params = {"recipeId"})
+    public ResponseEntity<List<FoodDto>> findByRecipeId(@RequestParam("recipeId") Long id){
+        List<Food> foods = serviceFood.getFoodByReceipe(id);
+        List<FoodDto> dtos = FoodMapper.INSTANCE.toDtoList(foods);
+        return ResponseEntity.ok(dtos);
+
     }
 }

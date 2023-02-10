@@ -19,6 +19,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT r from Recipe r where r.profil.id = ?1 and r.date = ?2")
     public List<Recipe> getRecipeByDate(long profilId, LocalDate date);
 
-    @Query("SELECT r from Recipe r where r.profil.id = ?1 and r.date > ?2 and r.date < ?3")
+    @Query("SELECT r from Recipe r where r.profil.id = ?1 and r.date >= ?2 and r.date <= ?3")
     public List<Recipe> getRecipeBetweenDate(long profilId, LocalDate dateStart, LocalDate dateEnd);
 }
