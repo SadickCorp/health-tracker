@@ -17,6 +17,7 @@ public interface FoodMapper {
     @Mapping(target = "id", ignore = true)
     Food toBo(LightFoodDto dto);
 
+    @Mapping(target = "recipe_id", source = "recipe.id")
     FoodDto toDto(Food bo);
 
     List<FoodDto> toDtoList(List<Food> bo);

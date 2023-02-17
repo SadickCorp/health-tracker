@@ -1,5 +1,6 @@
 package com.example.springboot.beans;
 
+import com.example.springboot.dto.light.LightFoodDto;
 import com.example.springboot.enums.EFoodFamily;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,11 +46,9 @@ public class Food {
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void update(LightFoodDto lightFoodDto){
+        this.setWeight(lightFoodDto.getWeight() != null ? lightFoodDto.getWeight(): this.getWeight());
+        this.setQuantity(lightFoodDto.getQuantity() != null ? lightFoodDto.getQuantity() : this.getQuantity());
+        this.setCalorie(lightFoodDto.getCalorie() != null ? lightFoodDto.getCalorie() : this.getCalorie());
     }
 }

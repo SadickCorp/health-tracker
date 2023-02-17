@@ -14,4 +14,5 @@ public class LightFoodDto {
     private Integer calorie;
     private Integer quantity;
     private EFoodFamily family;
+    private long recipe_id;
 }

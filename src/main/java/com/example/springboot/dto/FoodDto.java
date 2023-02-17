@@ -16,4 +16,5 @@ public class FoodDto implements Serializable {
     private final Integer calorie;
     private final Integer quantity;
     private final EFoodFamily family;
+    private final long recipe_id;
 }

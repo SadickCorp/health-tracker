@@ -1,6 +1,7 @@
 package com.example.springboot.services;
 
 import com.example.springboot.beans.Food;
+import com.example.springboot.dto.light.LightFoodDto;
 import com.example.springboot.repository.FoodRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +31,10 @@ public class ServiceFood implements IServiceFood{
         return this.foodRepository.saveAndFlush(pfood);
     }
 
-    public Food updateFood(Food pfood) {
-        return this.foodRepository.saveAndFlush(pfood);
+    public Food updateFood(long id, LightFoodDto dto) {
+        Food food = this.getFoodById(id);
+        food.update(dto);
+        return this.foodRepository.saveAndFlush(food);
     }
 
     public void deleteFood(long id) {

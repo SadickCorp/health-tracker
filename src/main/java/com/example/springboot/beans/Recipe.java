@@ -42,7 +42,7 @@ public class Recipe {
     private Boolean is_favorite;
 
     @OneToMany(mappedBy = "recipe")
-    private List<Food> food;
+    private List<Food> foods;
 
     @ManyToOne
     @JoinColumn(name = "profil_id")
@@ -50,7 +50,6 @@ public class Recipe {
 
     public Recipe(){
         this.setDate(LocalDate.now());
-        this.setFood(new ArrayList<Food>());
     }
 
     public void update(LightRecipeDto lightRecipeDto){

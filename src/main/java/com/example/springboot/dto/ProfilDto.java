@@ -26,6 +26,6 @@ public class ProfilDto implements Serializable {
     private final EFoodPreference food_preference;
     private final long user_id;
     private final List<MonitoringDto> monitorings;
-    private final List<RecipeDto> meal;
+    private final List<RecipeDto> recipes;
     private final GoalDto goal;
 }

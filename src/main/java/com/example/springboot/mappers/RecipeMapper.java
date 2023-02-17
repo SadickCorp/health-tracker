@@ -10,14 +10,12 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(
-        uses = {},
-        injectionStrategy = InjectionStrategy.CONSTRUCTOR
-)
+@Mapper(injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface RecipeMapper {
     RecipeMapper INSTANCE = Mappers.getMapper(RecipeMapper.class);
 
-    @Mapping(target = "food", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "foods", ignore = true)
     @Mapping(target = "profil", ignore = true)
     @Mapping(target = "date", ignore = true)
     Recipe toBo(LightRecipeDto dto);

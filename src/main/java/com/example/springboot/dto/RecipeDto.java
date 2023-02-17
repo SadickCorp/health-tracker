@@ -22,5 +22,5 @@ public class RecipeDto implements Serializable {
     private final ERecipeCategory category;
     private final Boolean is_favorite;
     private final long profil_id;
-    private final List<FoodDto> food;
+    private final List<FoodDto> foods;
 }
