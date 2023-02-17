@@ -1,11 +1,20 @@
 package com.example.springboot.beans;
 
+import com.example.springboot.dto.light.LightFoodDto;
 import com.example.springboot.enums.EFoodFamily;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 
 @Entity()
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "food")
 public class Food {
     @Id
@@ -30,14 +39,16 @@ public class Food {
     private EFoodFamily family;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "food_id", referencedColumnName = "id")
+    @JoinColumn(name = "foodcomposition_id", referencedColumnName = "id")
     private FoodComposition foodComposition;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
 
-    public void setId(Long id) {
-        this.id = id;
+    public void update(LightFoodDto lightFoodDto){
+        this.setWeight(lightFoodDto.getWeight() != null ? lightFoodDto.getWeight(): this.getWeight());
+        this.setQuantity(lightFoodDto.getQuantity() != null ? lightFoodDto.getQuantity() : this.getQuantity());
+        this.setCalorie(lightFoodDto.getCalorie() != null ? lightFoodDto.getCalorie() : this.getCalorie());
     }
 }

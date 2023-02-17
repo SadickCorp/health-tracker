@@ -20,4 +20,5 @@ public class LightProfilDto {
     private LocalDate birth;
     private double weight;
     private EFoodPreference food_preference;
+    private Long user_id;
 }

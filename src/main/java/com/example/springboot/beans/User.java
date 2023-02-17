@@ -1,6 +1,7 @@
 package com.example.springboot.beans;
 
 import com.example.springboot.dto.light.LightUserDto;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +26,7 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "profil_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "user")
     private Profil profil;
 
     public void update(LightUserDto lightUserDto){

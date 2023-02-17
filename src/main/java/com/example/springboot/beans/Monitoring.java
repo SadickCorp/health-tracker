@@ -1,10 +1,18 @@
 package com.example.springboot.beans;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 
 @Entity()
+@Getter
+@Setter
+@AllArgsConstructor
 @Table(name = "monitoring")
 public class Monitoring {
     @Id
@@ -18,11 +26,11 @@ public class Monitoring {
     @Column(name = "date")
     private LocalDate date;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "profil_id")
+    private Profil profil;
 
-    public void setId(Long id) {
-        this.id = id;
+    public Monitoring(){
+        this.setDate(LocalDate.now());
     }
 }

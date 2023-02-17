@@ -1,10 +1,18 @@
 package com.example.springboot.beans;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CollectionId;
 
 import javax.persistence.*;
 
 @Entity()
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "foodcomposition")
 public class FoodComposition {
     @Id
@@ -24,11 +32,4 @@ public class FoodComposition {
     @Column(name = "sugar")
     private double sugar;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

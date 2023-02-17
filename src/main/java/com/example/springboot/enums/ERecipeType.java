@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum EReceipeType {
+public enum ERecipeType {
     NONE("NONE"),
     VEGAN("VEGAN"),
     VEGE("VEGE"),

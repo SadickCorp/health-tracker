@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 @Service()
 public class ServiceFoodComposition implements IServiceFoodComposition{
 
-    private FoodCompositionRepository repository;
+    private final FoodCompositionRepository repository;
 
     public ServiceFoodComposition(FoodCompositionRepository repository){
         this.repository = repository;

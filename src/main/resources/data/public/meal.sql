@@ -1,4 +1,4 @@
-create table meal
+create table recipe
 (
     id          bigserial
         primary key,
@@ -12,6 +12,6 @@ create table meal
             references food
 );
 
-alter table meal
+alter table recipe
     owner to postgres;
 

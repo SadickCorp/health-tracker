@@ -5,11 +5,12 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum EReceipeCategory {
+public enum ERecipeCategory {
     BREAKFAST("BF"),
     LUNCH("L"),
     DINER("DINER"),
-    NIBBLE("N");
+    NIBBLE("N"),
+    RECIPE("R");
 
     private final String code;
 }

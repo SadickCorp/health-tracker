@@ -18,13 +18,13 @@ create table profil
             references monitoring,
     receipe_id      bigint
         constraint fkad4algdh0p2aaw96lq4dwwurn
-            references meal,
+            references recipe,
     user_id         bigint
         constraint "FK74sd0iwwpre0c3wk2ur5wjunt"
             references "user",
     meal_id         bigint
         constraint fkq5mv7r7fxaqkqc0ehvowpcmy8
-            references meal
+            references recipe
 );
 
 alter table profil
