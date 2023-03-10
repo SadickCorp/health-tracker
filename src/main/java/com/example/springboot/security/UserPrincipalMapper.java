@@ -16,6 +16,7 @@ public class UserPrincipalMapper {
         userp.setPassword(user.getPassword());
         userp.setEnabled(true);
         userp.setAuthorities(authorities);
+        userp.setId(user.getId());
         return userp;
     }
 }

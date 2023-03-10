@@ -13,6 +13,7 @@ public class UserPrincipal implements UserDetails {
     private String username;
     private String password;
     private boolean enabled;
+    private Long id;
     private Collection<? extends GrantedAuthority> authorities;
 
     @Override
@@ -48,5 +49,9 @@ public class UserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public Long getId(){
+        return id;
     }
 }

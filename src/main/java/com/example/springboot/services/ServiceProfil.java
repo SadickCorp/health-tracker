@@ -22,6 +22,10 @@ public class ServiceProfil implements IServiceProfil{
         return this.profilRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
     }
 
+    public Profil getProfilByUserId(long id){
+        return this.profilRepository.findProfilByUserId(id);
+    }
+
     public Profil addProfil(Profil pprofil) {
         return this.profilRepository.saveAndFlush(pprofil);
     }
