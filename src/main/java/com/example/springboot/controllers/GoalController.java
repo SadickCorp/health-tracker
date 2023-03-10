@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
-@RequestMapping(path = "goal" )
+@RequestMapping(path = "/api/goal" )
 public class GoalController {
 
     private final ServiceGoal serviceGoal;

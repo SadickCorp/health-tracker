@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity()
 @Table(name = "users")
@@ -28,6 +29,14 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private Profil profil;
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(
+            name="users_roles",
+            joinColumns= {@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="role_id")}
+    )
+    private List<Role> roles;
 
     public void update(LightUserDto lightUserDto){
         if(lightUserDto.getEmail() != null){

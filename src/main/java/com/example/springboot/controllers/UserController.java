@@ -6,11 +6,13 @@ import com.example.springboot.dto.light.LightUserDto;
 import com.example.springboot.mappers.UserMapper;
 import com.example.springboot.services.ServiceUser;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController()
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final ServiceUser serviceUser;
@@ -22,6 +24,8 @@ public class UserController {
     @PostMapping(value = "")
     public ResponseEntity<UserDto> create(@RequestBody LightUserDto dto){
         User user = UserMapper.INSTANCE.toBo(dto);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user = this.serviceUser.addUser(user);
         UserDto userDto = UserMapper.INSTANCE.toDto(user);
         return ResponseEntity.ok(userDto);
@@ -47,7 +51,4 @@ public class UserController {
         this.serviceUser.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
-
-
-
 }

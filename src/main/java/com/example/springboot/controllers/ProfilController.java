@@ -9,12 +9,14 @@ import com.example.springboot.mappers.ProfilMapper;
 import com.example.springboot.services.ServiceProfil;
 import com.example.springboot.services.ServiceUser;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("profil" )
+@RequestMapping("/api/profil")
+@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 public class ProfilController {
     private final ServiceProfil serviceProfil;
     private final ServiceUser serviceUser;
