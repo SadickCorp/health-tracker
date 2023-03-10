@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@RequestMapping(path = "/food-composition" )
+@RequestMapping(path = "/api/food-composition" )
 public class FoodCompositionController {
 
     private final ServiceFoodComposition serviceFoodComposition;

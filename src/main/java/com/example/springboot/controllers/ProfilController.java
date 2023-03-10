@@ -6,21 +6,28 @@ import com.example.springboot.beans.User;
 import com.example.springboot.dto.ProfilDto;
 import com.example.springboot.dto.light.LightProfilDto;
 import com.example.springboot.mappers.ProfilMapper;
+import com.example.springboot.security.JwtProvider;
 import com.example.springboot.services.ServiceProfil;
 import com.example.springboot.services.ServiceUser;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("profil" )
+@RequestMapping("/api/profil")
+//@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 public class ProfilController {
     private final ServiceProfil serviceProfil;
     private final ServiceUser serviceUser;
-    public ProfilController(ServiceProfil serviceProfil, ServiceUser serviceUser){
+    private JwtProvider tokenProvider;
+    public ProfilController(ServiceProfil serviceProfil, ServiceUser serviceUser,
+                            JwtProvider tokenProvider){
         this.serviceProfil = serviceProfil;
         this.serviceUser = serviceUser;
+        this.tokenProvider = tokenProvider;
     }
 
     @PostMapping(value = "")
@@ -33,9 +40,10 @@ public class ProfilController {
         return ResponseEntity.ok(profilDto);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<ProfilDto> findById(@PathVariable("id") long id){
-        Profil profil = this.serviceProfil.getProfil(id);
+    @GetMapping()
+    public ResponseEntity<ProfilDto> findById(@RequestHeader (name="Authorization") String token){
+        Long idUser = tokenProvider.getUserIdFromJWT(token.substring(7, token.length()));
+        Profil profil = this.serviceProfil.getProfilByUserId(idUser);
         ProfilDto dto = ProfilMapper.INSTANCE.toDto(profil);
         return ResponseEntity.ok(dto);
     }

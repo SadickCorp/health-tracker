@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "recipes" )
+@RequestMapping(path = "/api/recipes" )
 public class RecipeController {
     private final ServiceRecipe serviceRecipe;
     private final ServiceProfil serviceProfil;

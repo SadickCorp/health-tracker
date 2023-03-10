@@ -6,6 +6,7 @@ import com.example.springboot.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service()
 public class ServiceUser implements IServiceUser {
@@ -34,5 +35,10 @@ public class ServiceUser implements IServiceUser {
     @Override
     public void deleteUser(long id) {
         this.userRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return this.userRepository.findUserByEmail(email);
     }
 }
