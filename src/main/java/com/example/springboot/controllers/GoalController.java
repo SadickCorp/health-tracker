@@ -8,20 +8,17 @@ import com.example.springboot.mappers.GoalMapper;
 import com.example.springboot.mappers.ProfilMapper;
 import com.example.springboot.services.ServiceGoal;
 import com.example.springboot.services.ServiceProfil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping(path = "/api/goal" )
+@RequiredArgsConstructor
 public class GoalController {
 
     private final ServiceGoal serviceGoal;
     private final ServiceProfil serviceProfil;
-
-    public GoalController(ServiceGoal serviceGoal, ServiceProfil serviceProfil){
-       this.serviceGoal = serviceGoal;
-       this.serviceProfil= serviceProfil;
-    }
 
     @PostMapping
     public ResponseEntity<GoalDto> create(@RequestBody LightGoalDto dto){

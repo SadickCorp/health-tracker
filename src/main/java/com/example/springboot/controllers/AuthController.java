@@ -6,7 +6,6 @@ import com.example.springboot.dto.JwtResponse;
 import com.example.springboot.dto.LoginDTO;
 import com.example.springboot.dto.UserDto;
 import com.example.springboot.dto.light.LightUserDto;
-import com.example.springboot.enums.ERoleName;
 import com.example.springboot.mappers.UserMapper;
 import com.example.springboot.security.JwtProvider;
 import com.example.springboot.services.ServiceUser;
@@ -23,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
@@ -38,7 +35,7 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginDTO login) {
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
         return ResponseEntity.ok(new JwtResponse(jwt));

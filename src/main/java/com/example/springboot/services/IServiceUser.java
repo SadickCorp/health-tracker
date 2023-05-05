@@ -12,6 +12,6 @@ public interface IServiceUser {
     public User updateUser(Long id, LightUserDto dto);
     public void deleteUser(final long id);
 
-    public Optional<User> findByEmail(final String email);
+    public User findByEmail(final String email);
 
 }
