@@ -16,8 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final IServiceUser serviceUser;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = this.serviceUser.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User NOT Found"));
+        User user = this.serviceUser.findByEmail(username);
         return UserPrincipalMapper.userToPrincipal(user);
     }
 }

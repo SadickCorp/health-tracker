@@ -3,19 +3,17 @@ package com.example.springboot.services;
 import com.example.springboot.beans.Goal;
 import com.example.springboot.dto.light.LightGoalDto;
 import com.example.springboot.repository.GoalRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 
 
 @Service
+@RequiredArgsConstructor
 public class ServiceGoal implements IServiceGoal {
 
     private final GoalRepository goalRepository;
-
-    public ServiceGoal(GoalRepository goalRepository){
-        this.goalRepository = goalRepository;
-    }
 
     public Goal getGoalById(long id) {
         return this.goalRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
