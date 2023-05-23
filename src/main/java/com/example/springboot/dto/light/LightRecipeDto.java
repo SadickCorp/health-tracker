@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @NoArgsConstructor
 @Getter
@@ -17,5 +18,5 @@ public class LightRecipeDto {
     private ERecipeType type;
     private ERecipeCategory category;
     private Boolean is_favorite;
-    private long profil_id;
+    private UUID user_id;
 }

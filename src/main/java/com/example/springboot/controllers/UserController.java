@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 
 @RestController()
 @RequestMapping("/api/user")
@@ -32,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserDto> getById(@PathVariable("id") Long id){
+    public ResponseEntity<UserDto> getById(@PathVariable("id") UUID id){
         User user = this.serviceUser.getUserById(id);
         UserDto dto = UserMapper.INSTANCE.toDto(user);
 
@@ -40,14 +42,14 @@ public class UserController {
     }
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable("id") long id, @RequestBody LightUserDto dto){
+    public ResponseEntity<UserDto> updateUser(@PathVariable("id") UUID id, @RequestBody LightUserDto dto){
         User update = this.serviceUser.updateUser(id, dto);
         UserDto user = UserMapper.INSTANCE.toDto(update);
         return ResponseEntity.ok(user);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> removeUser(@PathVariable("id") long id){
+    public ResponseEntity<?> removeUser(@PathVariable("id") UUID id){
         this.serviceUser.deleteUser(id);
         return ResponseEntity.noContent().build();
     }

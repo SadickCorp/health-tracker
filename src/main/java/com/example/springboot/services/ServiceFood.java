@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Service()
 public class ServiceFood implements IServiceFood{
@@ -19,11 +20,11 @@ public class ServiceFood implements IServiceFood{
     }
 
 
-    public List<Food> getFoodByReceipe(long receipe_id){
+    public List<Food> getFoodByReceipe(UUID receipe_id){
             return foodRepository.getFoodByRecipeId(receipe_id);
     }
 
-    public Food getFoodById(long id) {
+    public Food getFoodById(UUID id) {
         return this.foodRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
     }
 
@@ -31,13 +32,13 @@ public class ServiceFood implements IServiceFood{
         return this.foodRepository.saveAndFlush(pfood);
     }
 
-    public Food updateFood(long id, LightFoodDto dto) {
+    public Food updateFood(UUID id, LightFoodDto dto) {
         Food food = this.getFoodById(id);
         food.update(dto);
         return this.foodRepository.saveAndFlush(food);
     }
 
-    public void deleteFood(long id) {
+    public void deleteFood(UUID id) {
         this.foodRepository.deleteById(id);
     }
 }

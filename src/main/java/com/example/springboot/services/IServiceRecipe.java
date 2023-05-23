@@ -7,15 +7,16 @@ import com.example.springboot.enums.ERecipeCategory;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public interface IServiceRecipe {
-    public Recipe getRecipeById(final long id);
-    public List<Recipe> geRecipesByProfilId(final long profilId);
+    public Recipe getRecipeById(final UUID id);
+    public List<Recipe> geRecipesByProfilId(final UUID profilId);
     public Recipe addRecipe(final Recipe preceipe);
-    public Recipe updateRecipe(final long id, final LightRecipeDto lightRecipeDto);
-    public void deleteRecipe(final long id);
-    public List<Recipe> getRecipeByCat(final long profilId, final ERecipeCategory category);
-    public List<Recipe> getRecipeBetweenDate(final long profilId, final LocalDate dateStart, final LocalDate dateEnd);
-    public List<Recipe> getRecipeByDate(final long profilId, final LocalDate dateStart);
+    public Recipe updateRecipe(final UUID id, final LightRecipeDto lightRecipeDto);
+    public void deleteRecipe(final UUID id);
+    public List<Recipe> getRecipeByCat(final UUID profilId, final ERecipeCategory category);
+    public List<Recipe> getRecipeBetweenDate(final UUID profilId, final LocalDate dateStart, final LocalDate dateEnd);
+    public List<Recipe> getRecipeByDate(final UUID profilId, final LocalDate dateStart);
 
 }

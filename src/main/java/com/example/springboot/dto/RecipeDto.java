@@ -9,18 +9,19 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * A DTO for the {@link Recipe} entity
  */
 @Data
 public class RecipeDto implements Serializable {
-    private final Long id;
+    private final UUID id;
     private final String label;
     private final LocalDate date;
     private final ERecipeType type;
     private final ERecipeCategory category;
     private final Boolean is_favorite;
-    private final long profil_id;
+    private final UUID user_id;
     private final List<FoodDto> foods;
 }

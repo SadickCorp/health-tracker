@@ -5,13 +5,12 @@ import com.example.springboot.enums.ERecipeCategory;
 import com.example.springboot.enums.ERecipeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity()
 @Setter
@@ -20,9 +19,9 @@ import java.util.List;
 @Table(name = "recipe")
 public class Recipe {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "label")
     private String label;
@@ -45,8 +44,8 @@ public class Recipe {
     private List<Food> foods;
 
     @ManyToOne
-    @JoinColumn(name = "profil_id")
-    private Profil profil;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Recipe(){
         this.setDate(LocalDate.now());

@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface GoalRepository extends JpaRepository<Goal, Long> {
-    @Query("SELECT g from Goal g where g.profil.id = ?1")
-    Goal getGoalByProfilId(final long profilId);
+public interface GoalRepository extends JpaRepository<Goal, UUID> {
+    @Query("SELECT g from Goal g where g.user.id = ?1")
+    Goal getGoalByProfilId(final UUID profilId);
 }

@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.UUID;
 
 @Setter
 public class UserPrincipal implements UserDetails {
@@ -13,7 +14,7 @@ public class UserPrincipal implements UserDetails {
     private String username;
     private String password;
     private boolean enabled;
-    private Long id;
+    private UUID id;
     private Collection<? extends GrantedAuthority> authorities;
 
     @Override
@@ -51,7 +52,7 @@ public class UserPrincipal implements UserDetails {
         return enabled;
     }
 
-    public Long getId(){
+    public UUID getId(){
         return id;
     }
 }

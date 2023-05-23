@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service()
 @RequiredArgsConstructor
@@ -19,24 +20,24 @@ public class ServiceUser implements IServiceUser {
     }
 
     @Override
-    public User getUserById(long id) {
+    public User getUserById(UUID id) {
         return this.userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public User updateUser(Long id, LightUserDto dto) {
+    public User updateUser(UUID id, LightUserDto dto) {
         User user = this.getUserById(id);
         user.update(dto);
         return this.userRepository.save(user);
     }
 
     @Override
-    public void deleteUser(long id) {
+    public void deleteUser(UUID id) {
         this.userRepository.deleteById(id);
     }
 
     @Override
-    public User findByEmail(String email) {
-        return this.userRepository.findUserByEmail(email).orElse(null);
+    public Optional<User> findByEmail(String email) {
+        return this.userRepository.findUserByEmail(email);
     }
 }

@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 @Entity()
 @Getter
@@ -15,9 +17,9 @@ import javax.persistence.*;
 @Table(name = "goal")
 public class Goal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "actual_weight")
     private double actual_weight;
@@ -29,7 +31,7 @@ public class Goal {
     private double start_weight;
 
     @OneToOne
-    private Profil profil;
+    private User user;
 
     public void update(LightGoalDto lightGoalDto){
         this.setGoal_weight(lightGoalDto.getGoal_weight()!= 0.0d ? lightGoalDto.getGoal_weight() : this.getGoal_weight());

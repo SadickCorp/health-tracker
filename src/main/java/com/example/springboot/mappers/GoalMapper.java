@@ -15,6 +15,6 @@ public interface GoalMapper {
     @Mapping(target = "id", ignore = true)
     Goal toBo(LightGoalDto dto);
 
-    @Mapping(target = "profil_id", source = "profil.id")
+    @Mapping(target = "user_id", source = "user.id")
     GoalDto toDto(Goal bo);
 }

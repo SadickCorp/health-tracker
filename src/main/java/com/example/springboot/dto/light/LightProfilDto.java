@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.UUID;
 
 @NoArgsConstructor
 @Getter
@@ -20,5 +21,5 @@ public class LightProfilDto {
     private LocalDate birth;
     private double weight;
     private EFoodPreference food_preference;
-    private Long user_id;
+    private UUID user_id;
 }
