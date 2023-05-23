@@ -4,12 +4,14 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
 import java.util.Collection;
 import java.util.UUID;
 
 @Setter
 public class UserPrincipal implements UserDetails {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     private String username;
     private String password;

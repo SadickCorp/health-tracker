@@ -2,7 +2,6 @@ package com.example.springboot.security;
 
 import com.example.springboot.beans.User;
 import com.example.springboot.services.IServiceUser;
-import com.example.springboot.services.ServiceUser;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
