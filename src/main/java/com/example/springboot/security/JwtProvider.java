@@ -46,8 +46,9 @@ public class JwtProvider {
     }
 
     public UUID getUserIdFromJWT(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(jwtSecret)
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(getSignInKey())
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
 
@@ -55,17 +56,16 @@ public class JwtProvider {
     }
     public boolean validateToken(String authToken) {
         try {
-            Jwts.parser()
-                    .setSigningKey(jwtSecret)
+            Jwts.parserBuilder()
+                    .setSigningKey(getSignInKey())
+                    .build()
                     .parseClaimsJws(authToken);
             return true;
-        } catch (SignatureException ex) {
-        } catch (MalformedJwtException ex) {
-        } catch (ExpiredJwtException ex) {
-        } catch (UnsupportedJwtException ex) {
-        } catch (IllegalArgumentException ex) {
+        } catch (MalformedJwtException | IllegalArgumentException | UnsupportedJwtException | ExpiredJwtException ex) {
+            throw new RuntimeException(ex);
+
         }
-        return false;
+
     }
 
     private Key getSignInKey() {
