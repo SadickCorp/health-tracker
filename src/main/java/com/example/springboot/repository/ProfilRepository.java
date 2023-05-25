@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface ProfilRepository extends JpaRepository<Profil, Long> {
-    Optional<Profil> findProfilById(Long id);
+public interface ProfilRepository extends JpaRepository<Profil, UUID> {
+    Optional<Profil> findProfilById(UUID id);
 
     @Query("SELECT p from Profil p where p.user.id = ?1")
-    Profil findProfilByUserId(long id);
+    Profil findProfilByUserId(UUID id);
 }

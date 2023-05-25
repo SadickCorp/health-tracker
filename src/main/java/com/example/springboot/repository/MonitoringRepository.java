@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface MonitoringRepository extends JpaRepository<Monitoring, Long> {
+public interface MonitoringRepository extends JpaRepository<Monitoring, UUID> {
 
-    @Query("SELECT m from Monitoring m where m.profil.id = ?1")
-    List<Monitoring> getMonitoringByIdProfil(final long profilId);
+    @Query("SELECT m from Monitoring m where m.user.id = ?1")
+    List<Monitoring> getMonitoringByIdProfil(final UUID profilId);
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Service()
 public class ServiceFoodComposition implements IServiceFoodComposition{
@@ -15,13 +16,13 @@ public class ServiceFoodComposition implements IServiceFoodComposition{
     public ServiceFoodComposition(FoodCompositionRepository repository){
         this.repository = repository;
     }
-    public FoodComposition getFoodCompositionById(long id) {
+    public FoodComposition getFoodCompositionById(UUID id) {
 
-        return repository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
+        return repository.findById(id).orElse(null);
     }
 
 
-    public List<FoodComposition> getFoodCompositionByFoodId(long id) {
+    public List<FoodComposition> getFoodCompositionByFoodId(UUID id) {
         return null;
     }
 
@@ -36,7 +37,7 @@ public class ServiceFoodComposition implements IServiceFoodComposition{
     }
 
 
-    public void deleteFoodComposition(long id) {
+    public void deleteFoodComposition(UUID id) {
         this.repository.deleteById(id);
     }
 }

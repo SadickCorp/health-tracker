@@ -16,6 +16,9 @@ public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "monitorings", ignore = true)
+    @Mapping(target = "recipes", ignore = true)
+    @Mapping(target = "goal", ignore = true)
     User toBo(LightUserDto dto);
 
     UserDto toDto(User bo);

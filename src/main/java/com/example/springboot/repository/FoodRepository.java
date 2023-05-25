@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface FoodRepository extends JpaRepository<Food, Long> {
+public interface FoodRepository extends JpaRepository<Food, UUID> {
     @Query("select f from Food f where f.recipe.id = ?1")
-    List<Food> getFoodByRecipeId(long recipeId);
+    List<Food> getFoodByRecipeId(UUID recipeId);
 }

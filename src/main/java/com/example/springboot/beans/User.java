@@ -1,27 +1,27 @@
 package com.example.springboot.beans;
 
 import com.example.springboot.dto.light.LightUserDto;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity()
 @Table(name = "users")
-@NoArgsConstructor
 @Getter
 @Setter
 @AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "password", nullable = false)
@@ -37,6 +37,20 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name="role_id")}
     )
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private List<Monitoring> monitorings;
+
+    @OneToOne(mappedBy = "user")
+    private Goal goal;
+
+    @OneToMany(mappedBy = "user")
+    private List<Recipe> recipes;
+
+    public User(){
+        this.setMonitorings(new ArrayList<Monitoring>());
+        this.setRecipes(new ArrayList<Recipe>());
+    }
 
     public void update(LightUserDto lightUserDto){
         if(lightUserDto.getEmail() != null){

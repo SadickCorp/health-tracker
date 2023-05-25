@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/profil")
@@ -42,21 +43,21 @@ public class ProfilController {
 
     @GetMapping()
     public ResponseEntity<ProfilDto> findById(@RequestHeader (name="Authorization") String token){
-        Long idUser = tokenProvider.getUserIdFromJWT(token.substring(7, token.length()));
+        UUID idUser = tokenProvider.getUserIdFromJWT(token.substring(7, token.length()));
         Profil profil = this.serviceProfil.getProfilByUserId(idUser);
         ProfilDto dto = ProfilMapper.INSTANCE.toDto(profil);
         return ResponseEntity.ok(dto);
     }
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<ProfilDto> updateProfil(@PathVariable("id") long id, @RequestBody LightProfilDto lightProfilDto){
+    public ResponseEntity<ProfilDto> updateProfil(@PathVariable("id") UUID id, @RequestBody LightProfilDto lightProfilDto){
         Profil update = this.serviceProfil.updateProfil(id, lightProfilDto);
         ProfilDto profilDto = ProfilMapper.INSTANCE.toDto(update);
         return ResponseEntity.ok(profilDto);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> deleteProfil(@PathVariable("id") long id){
+    public ResponseEntity<?> deleteProfil(@PathVariable("id") UUID id){
         this.serviceProfil.deleteProfil(id);
         return ResponseEntity.noContent().build();
     }

@@ -1,9 +1,12 @@
 create table monitoring
 (
-    id     bigserial
+    id        bigserial
         primary key,
-    date   timestamp,
-    weight integer
+    date      date,
+    weight    double precision,
+    profil_id bigint
+        constraint fklgpv7gc81alo9df2atq7uig7k
+            references profil
 );
 
 alter table monitoring

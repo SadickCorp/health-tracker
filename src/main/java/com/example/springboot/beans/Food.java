@@ -6,9 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.annotation.Bean;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
+import java.util.UUID;
 
 @Entity()
 @Getter
@@ -18,21 +18,21 @@ import javax.persistence.*;
 @Table(name = "food")
 public class Food {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "weight")
-    private Integer weight;
+    private double weight;
 
     @Column(name = "calorie")
-    private Integer calorie;
+    private double calorie;
 
     @Column(name = "quantity")
-    private Integer quantity;
+    private double quantity;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "family")

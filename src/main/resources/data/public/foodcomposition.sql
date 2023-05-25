@@ -2,10 +2,10 @@ create table foodcomposition
 (
     id       bigserial
         primary key,
-    glucides integer,
-    lipides  integer,
-    proteins integer,
-    sugar    integer
+    glucides double precision,
+    lipides  double precision,
+    proteins double precision,
+    sugar    double precision
 );
 
 alter table foodcomposition

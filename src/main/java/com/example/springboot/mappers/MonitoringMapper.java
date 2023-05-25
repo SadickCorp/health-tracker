@@ -20,7 +20,7 @@ public interface MonitoringMapper {
 
 
 
-    @Mapping(target = "profil_id", source = "profil.id")
+    @Mapping(target = "user_id", source = "user.id")
     MonitoringDto toDto(Monitoring bo);
 
     List<MonitoringDto> toDtoList(List<Monitoring> bo);

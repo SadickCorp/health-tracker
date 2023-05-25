@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -14,5 +16,5 @@ public class LightFoodDto {
     private Integer calorie;
     private Integer quantity;
     private EFoodFamily family;
-    private long recipe_id;
+    private UUID recipe_id;
 }

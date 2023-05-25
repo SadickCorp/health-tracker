@@ -5,11 +5,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @NoArgsConstructor
 @Getter
 @Setter
 public class LightMonitoringDto {
     private double weight;
-    private long profil_id;
+    private UUID user_id;
 }

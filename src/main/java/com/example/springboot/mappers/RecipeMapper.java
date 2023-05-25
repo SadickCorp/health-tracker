@@ -16,11 +16,11 @@ public interface RecipeMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "foods", ignore = true)
-    @Mapping(target = "profil", ignore = true)
+    @Mapping(target = "user", ignore = true)
     @Mapping(target = "date", ignore = true)
     Recipe toBo(LightRecipeDto dto);
 
-    @Mapping(target = "profil_id", source="profil.id")
+    @Mapping(target = "user_id", source="user.id")
     RecipeDto toDto(Recipe bo);
 
     List<RecipeDto> toDtoList(List<Recipe> bo);

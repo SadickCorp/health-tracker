@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController()
 @RequestMapping(path = "/api/foods" )
@@ -28,14 +29,14 @@ public class FoodController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<FoodDto> findById(@PathVariable("id") Long id){
+    public ResponseEntity<FoodDto> findById(@PathVariable("id") UUID id){
         Food food = this.serviceFood.getFoodById(id);
         FoodDto dto = FoodMapper.INSTANCE.toDto(food);
         return ResponseEntity.ok(dto);
     }
 
     @GetMapping(params = {"recipeId"})
-    public ResponseEntity<List<FoodDto>> findByRecipeId(@RequestParam("recipeId") Long id){
+    public ResponseEntity<List<FoodDto>> findByRecipeId(@RequestParam("recipeId") UUID id){
         List<Food> foods = serviceFood.getFoodByReceipe(id);
         List<FoodDto> dtos = FoodMapper.INSTANCE.toDtoList(foods);
         return ResponseEntity.ok(dtos);
@@ -53,14 +54,14 @@ public class FoodController {
     }
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<FoodDto> update(@PathVariable("id") long id, @RequestBody LightFoodDto dto){
+    public ResponseEntity<FoodDto> update(@PathVariable("id") UUID id, @RequestBody LightFoodDto dto){
         Food update = this.serviceFood.updateFood(id, dto);
         FoodDto foodDto = FoodMapper.INSTANCE.toDto(update);
         return ResponseEntity.ok(foodDto);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") long id){
+    public ResponseEntity<?> delete(@PathVariable("id") UUID id){
         this.serviceFood.deleteFood(id);
         return ResponseEntity.noContent().build();
     }

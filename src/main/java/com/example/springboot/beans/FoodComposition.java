@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CollectionId;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
+import java.util.UUID;
 
 @Entity()
 @Getter
@@ -16,9 +16,9 @@ import javax.persistence.*;
 @Table(name = "foodcomposition")
 public class FoodComposition {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "glucides")
     private double glucides;

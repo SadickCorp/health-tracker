@@ -6,10 +6,11 @@ import com.example.springboot.enums.EUserSexe;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity()
 @Table(name="profil")
@@ -18,8 +19,8 @@ import java.util.List;
 public class Profil {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name = "name")
     private String name;
@@ -50,19 +51,9 @@ public class Profil {
     @OneToOne
     private User user;
 
-    @OneToMany(mappedBy = "profil")
-    private List<Monitoring> monitorings;
-
-    @OneToMany(mappedBy = "profil")
-    private List<Recipe> recipes;
-
-    @OneToOne(mappedBy = "profil")
-    private Goal goal;
 
     public Profil(){
         this.setCreated_at(LocalDate.now());
-        this.setMonitorings(new ArrayList<Monitoring>());
-        this.setRecipes(new ArrayList<Recipe>());
     }
     public void update(LightProfilDto lightProfilDto){
         this.setName(lightProfilDto.getName() != null ? lightProfilDto.getName() : this.getName());

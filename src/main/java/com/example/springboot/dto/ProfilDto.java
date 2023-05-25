@@ -9,13 +9,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * A DTO for the {@link Profil} entity
  */
 @Data
 public class ProfilDto implements Serializable {
-    private final Long id;
+    private final UUID id;
     private final String name;
     private final String surname;
     private final Integer height;
@@ -24,8 +25,6 @@ public class ProfilDto implements Serializable {
     private final LocalDate birth;
     private final Integer weight;
     private final EFoodPreference food_preference;
-    private final long user_id;
-    private final List<MonitoringDto> monitorings;
-    private final List<RecipeDto> recipes;
-    private final GoalDto goal;
+    private final UUID user_id;
+
 }

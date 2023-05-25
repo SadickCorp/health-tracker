@@ -4,17 +4,18 @@ import com.example.springboot.enums.EFoodFamily;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * A DTO for the {@link com.example.springboot.beans.Food} entity
  */
 @Data
 public class FoodDto implements Serializable {
-    private final Long id;
+    private final UUID id;
     private final String name;
-    private final Integer weight;
-    private final Integer calorie;
-    private final Integer quantity;
+    private final double weight;
+    private final double calorie;
+    private final double quantity;
     private final EFoodFamily family;
-    private final long recipe_id;
+    private final UUID recipe_id;
 }

@@ -1,15 +1,18 @@
 create table food
 (
-    id       bigserial
+    id                 bigserial
         primary key,
-    calorie  integer,
-    family   bytea,
-    name     varchar(255),
-    quantity integer,
-    weight   integer,
-    food_id  bigint
-        constraint fk273wbds7fuoro608hgpovi0ec
-            references foodcomposition
+    calorie            integer,
+    family             varchar(255),
+    name               varchar(255),
+    quantity           integer,
+    weight             integer,
+    foodcomposition_id bigint
+        constraint fkplsvuhum2tqeibq3tmgw7e06q
+            references foodcomposition,
+    recipe_id          bigint
+        constraint fk69ijw94tgy87hgt23h90pud0k
+            references recipe
 );
 
 alter table food

@@ -2,12 +2,11 @@ package com.example.springboot.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.UUID;
 
 @Entity()
 @Getter
@@ -17,8 +16,8 @@ import java.util.Date;
 public class Monitoring {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name = "weight")
     private double weight;
@@ -27,8 +26,8 @@ public class Monitoring {
     private LocalDate date;
 
     @ManyToOne
-    @JoinColumn(name = "profil_id")
-    private Profil profil;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Monitoring(){
         this.setDate(LocalDate.now());
