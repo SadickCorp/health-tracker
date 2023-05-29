@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController
@@ -29,5 +30,22 @@ public class CaloriesController {
         return ResponseEntity
                 .ok()
                 .body(this.caloriesService.getGoalCaloriesEstimation(userId));
+    }
+
+    @GetMapping("/recipe/{recipeId}")
+    public ResponseEntity<Double> getRecipeAmountOfCalories(@PathVariable("recipeId") UUID recipeId) {
+        return ResponseEntity
+                .ok()
+                .body(this.caloriesService.getRecipeAmountOfCalories(recipeId));
+    }
+
+    @GetMapping("/daily/{userId}/{date}")
+    public ResponseEntity<Double> getDailyAmountOfCalories(
+            @PathVariable("userId") UUID userId,
+            @PathVariable("date")LocalDate date
+            ){
+        return ResponseEntity
+                .ok()
+                .body(this.caloriesService.getDailyAmountOfCalories(userId, date));
     }
 }
