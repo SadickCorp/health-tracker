@@ -1,14 +1,11 @@
 package com.example.springboot.controllers;
 
 import com.example.springboot.beans.Goal;
-import com.example.springboot.beans.Profil;
 import com.example.springboot.beans.User;
 import com.example.springboot.dto.GoalDto;
 import com.example.springboot.dto.light.LightGoalDto;
 import com.example.springboot.mappers.GoalMapper;
-import com.example.springboot.mappers.ProfilMapper;
 import com.example.springboot.services.ServiceGoal;
-import com.example.springboot.services.ServiceProfil;
 import com.example.springboot.services.ServiceUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +33,7 @@ public class GoalController {
 
     @GetMapping(value = "/{profilId}")
     public ResponseEntity<GoalDto> findGoalByProfilId(@PathVariable("profilId") UUID idProfil){
-        Goal goal = this.serviceGoal.getGoalByProfilId(idProfil);
+        Goal goal = this.serviceGoal.getGoalByUserId(idProfil);
         GoalDto dto = GoalMapper.INSTANCE.toDto(goal);
         return ResponseEntity.ok(dto);
     }

@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 public interface GoalRepository extends JpaRepository<Goal, UUID> {
     @Query("SELECT g from Goal g where g.user.id = ?1")
-    Goal getGoalByProfilId(final UUID profilId);
+    Goal getGoalByUserId(final UUID userId);
 }

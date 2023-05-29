@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface IServiceGoal {
     public Goal getGoalById(final UUID id);
-    public Goal getGoalByProfilId(final UUID id);
+    public Goal getGoalByUserId(final UUID id);
     public Goal addGoal(final Goal pgoal);
     public Goal updateGoal(final UUID id, final LightGoalDto lightGoalDto);
     public void deleteGoal(final UUID id);
