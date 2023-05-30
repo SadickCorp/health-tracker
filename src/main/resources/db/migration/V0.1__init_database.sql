@@ -63,10 +63,18 @@ CREATE TABLE IF NOT EXISTS recipe
 CREATE TABLE IF NOT EXISTS foodcomposition
 (
     id UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v1(),
-    glucides DOUBLE PRECISION,
-    lipides DOUBLE PRECISION,
-    proteins DOUBLE PRECISION,
-    sugar DOUBLE PRECISION
+    "name" VARCHAR,
+    calories DOUBLE PRECISION,
+    serving_size_g DOUBLE PRECISION,
+    fat_total_g DOUBLE PRECISION,
+    fat_saturated_g DOUBLE PRECISION,
+    protein_g DOUBLE PRECISION,
+    sodium_mg DOUBLE PRECISION,
+    potassium_mg DOUBLE PRECISION,
+    cholesterol_mg DOUBLE PRECISION,
+    carbohydrates_total_g DOUBLE PRECISION,
+    fiber_g DOUBLE PRECISION,
+    sugar_g DOUBLE PRECISION
     );
 
 CREATE TABLE IF NOT EXISTS food

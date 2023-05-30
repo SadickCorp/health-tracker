@@ -1,11 +1,11 @@
--- Compte admin/password et abc/test
-INSERT INTO public.users (id, email, password) values ('ab2cf11d-2d39-41a2-9a1d-f7fe0a1e483f', 'admin', '$2a$10$Ch5GXrTD2DX9ZM4z0DI6HeiKe/mGCZKV3l34Q81er.cSQXYnEZ9Li'),
-                                               ('042ec3a9-7ecf-4550-813c-f620dfb31203', 'abc', '$2a$10$xrckncUzOZ/1EchKVz.BZOC85jumb/A2aK7F01/aQTsuzpcFDxaOC');
+-- Compte admin@gmail.com/Azerty1234! et dev@gmail.com/Azerty1234!
+INSERT INTO public.users (id, email, password) values ('ab2cf11d-2d39-41a2-9a1d-f7fe0a1e483f', 'dev@gmail.com', '$2a$10$zNb2uhBv.DN8oeM9cJW8Vun5HtKDjDspnSVOASkv7weLTphPsEJEm'),
+                                               ('042ec3a9-7ecf-4550-813c-f620dfb31203', 'admin@gmail.com', '$2a$10$zNb2uhBv.DN8oeM9cJW8Vun5HtKDjDspnSVOASkv7weLTphPsEJEm');
 
 
 INSERT INTO public.profil (id, birth, created_at, food_preference, height, "name", sexe, surname, weight, user_id)
-VALUES('00000000-0000-0000-0000-000000000001', '1990-01-01', '2023-01-01', '', 178, 'admin', 'MAN', 'test', 78, 'ab2cf11d-2d39-41a2-9a1d-f7fe0a1e483f'),
-      ('00000000-0000-0000-0000-000000000002', '1990-01-01', '2023-01-01', '', 173, 'john', 'MAN', 'doe', 85, '042ec3a9-7ecf-4550-813c-f620dfb31203');
+VALUES('00000000-0000-0000-0000-000000000001', '1990-01-01', '2023-01-01', 'NONE', 178, 'admin', 'MAN', 'test', 78, 'ab2cf11d-2d39-41a2-9a1d-f7fe0a1e483f'),
+      ('00000000-0000-0000-0000-000000000002', '1990-01-01', '2023-01-01', 'NONE', 173, 'john', 'MAN', 'doe', 85, '042ec3a9-7ecf-4550-813c-f620dfb31203');
 
 INSERT INTO public.goal
 (id, actual_weight, goal_weight, start_weight, user_id)
@@ -32,8 +32,8 @@ VALUES('00000000-0000-0000-0000-000000000001', '2023-05-20', 'BREAKFAST', true, 
       ('00000000-0000-0000-0000-000000000004', '2023-05-20', 'LUNCH', false, 'salade', 'NONE', '042ec3a9-7ecf-4550-813c-f620dfb31203');
 
 INSERT INTO public.foodcomposition
-(id, glucides, lipides, proteins, sugar)
-VALUES('00000000-0000-0000-0000-000000000001', 10, 60, 50, 10);
+(id, "name", calories, serving_size_g, fat_total_g, fat_saturated_g, protein_g, sodium_mg, potassium_mg, cholesterol_mg, carbohydrates_total_g, fiber_g, sugar_g)
+VALUES('00000000-0000-0000-0000-000000000001','milk', 100, 10, 8, 26, 10, 6,  10, 60, 50, 10, 4);
 
 
 INSERT INTO public.food
