@@ -20,8 +20,8 @@ public class ServiceGoal implements IServiceGoal {
         return this.goalRepository.findById(id).orElse(null);
     }
 
-    public Goal getGoalByProfilId(UUID id) {
-        return this.goalRepository.getGoalByProfilId(id);
+    public Goal getGoalByUserId(UUID id) {
+        return this.goalRepository.getGoalByUserId(id);
     }
 
     public Goal addGoal(Goal pgoal) {
