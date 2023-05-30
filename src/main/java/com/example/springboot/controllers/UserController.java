@@ -23,15 +23,15 @@ public class UserController {
         this.serviceUser = serviceUser;
     }
 
-    @PostMapping(value = "")
-    public ResponseEntity<UserDto> create(@RequestBody LightUserDto dto){
-        User user = UserMapper.INSTANCE.toBo(dto);
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user = this.serviceUser.addUser(user);
-        UserDto userDto = UserMapper.INSTANCE.toDto(user);
-        return ResponseEntity.ok(userDto);
-    }
+//    @PostMapping(value = "")
+//    public ResponseEntity<UserDto> create(@RequestBody LightUserDto dto){
+//        User user = UserMapper.INSTANCE.toBo(dto);
+//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user = this.serviceUser.addUser(user);
+//        UserDto userDto = UserMapper.INSTANCE.toDto(user);
+//        return ResponseEntity.ok(userDto);
+//    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserDto> getById(@PathVariable("id") UUID id){

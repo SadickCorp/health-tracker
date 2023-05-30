@@ -1,6 +1,5 @@
 package com.example.springboot.controllers;
 
-import com.example.springboot.beans.Role;
 import com.example.springboot.beans.User;
 import com.example.springboot.dto.JwtResponse;
 import com.example.springboot.dto.LoginDTO;
