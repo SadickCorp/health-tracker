@@ -2,6 +2,10 @@ package com.example.springboot.beans;
 
 import com.example.springboot.dto.light.LightUserDto;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,9 +25,13 @@ public class User {
     @Column(name = "id", nullable = false)
     private UUID id;
 
+    @Email
+    @NotNull
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @NotNull
+    @Size(min = 8)
     @Column(name = "password", nullable = false)
     private String password;
 

@@ -12,5 +12,5 @@ import java.util.UUID;
 public interface MonitoringRepository extends JpaRepository<Monitoring, UUID> {
 
     @Query("SELECT m from Monitoring m where m.user.id = ?1")
-    List<Monitoring> getMonitoringByIdProfil(final UUID profilId);
+    List<Monitoring> getMonitoringByIdUser(final UUID userId);
 }

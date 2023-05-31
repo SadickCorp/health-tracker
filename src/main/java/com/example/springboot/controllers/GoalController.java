@@ -31,9 +31,9 @@ public class GoalController {
         return ResponseEntity.ok(goalDto);
     }
 
-    @GetMapping(value = "/{profilId}")
-    public ResponseEntity<GoalDto> findGoalByProfilId(@PathVariable("profilId") UUID idProfil){
-        Goal goal = this.serviceGoal.getGoalByUserId(idProfil);
+    @GetMapping(value = "/{userId}")
+    public ResponseEntity<GoalDto> findGoalByProfilId(@PathVariable("userId") UUID idUser){
+        Goal goal = this.serviceGoal.getGoalByUserId(idUser);
         GoalDto dto = GoalMapper.INSTANCE.toDto(goal);
         return ResponseEntity.ok(dto);
     }

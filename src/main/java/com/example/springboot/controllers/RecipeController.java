@@ -1,13 +1,11 @@
 package com.example.springboot.controllers;
 
-import com.example.springboot.beans.Profil;
 import com.example.springboot.beans.Recipe;
 import com.example.springboot.beans.User;
 import com.example.springboot.dto.RecipeDto;
 import com.example.springboot.dto.light.LightRecipeDto;
 import com.example.springboot.enums.ERecipeCategory;
 import com.example.springboot.mappers.RecipeMapper;
-import com.example.springboot.services.ServiceProfil;
 import com.example.springboot.services.ServiceRecipe;
 import com.example.springboot.services.ServiceUser;
 import lombok.RequiredArgsConstructor;
@@ -26,34 +24,34 @@ public class RecipeController {
     private final ServiceRecipe serviceRecipe;
     private final ServiceUser serviceUser;
 
-    @GetMapping("/{profilId}")
-    public ResponseEntity<List<RecipeDto>> getRecipesByProfilId(@PathVariable("profilId") UUID profilId){
-        List<Recipe> recipeList = this.serviceRecipe.geRecipesByProfilId(profilId);
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<RecipeDto>> getRecipesByUserId(@PathVariable("userId") UUID userId){
+        List<Recipe> recipeList = this.serviceRecipe.getRecipesByUserId(userId);
         List<RecipeDto> dtos = RecipeMapper.INSTANCE.toDtoList(recipeList);
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping(value = "/{profilId}", params = {"date"})
-    public ResponseEntity<List<RecipeDto>> getRecipesByDate(@PathVariable("profilId") UUID profilId,
+    @GetMapping(value = "/{userId}", params = {"date"})
+    public ResponseEntity<List<RecipeDto>> getRecipesByDate(@PathVariable("userId") UUID userId,
                                                             @RequestParam("date") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date){
-        List<Recipe> recipeList = this.serviceRecipe.getRecipeByDate(profilId, date);
+        List<Recipe> recipeList = this.serviceRecipe.getRecipeByDate(userId, date);
         List<RecipeDto> dtos = RecipeMapper.INSTANCE.toDtoList(recipeList);
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping(value = "/{profilId}", params = {"startDate", "endDate"})
-    public ResponseEntity<List<RecipeDto>> getRecipesbetweenDate(@PathVariable("profilId") UUID profilId,
+    @GetMapping(value = "/{userId}", params = {"startDate", "endDate"})
+    public ResponseEntity<List<RecipeDto>> getRecipesbetweenDate(@PathVariable("userId") UUID userId,
                                                                  @RequestParam("startDate") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate startDate,
                                                                  @RequestParam("endDate") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate endDate){
-        List<Recipe> recipeList = this.serviceRecipe.getRecipeBetweenDate(profilId, startDate, endDate);
+        List<Recipe> recipeList = this.serviceRecipe.getRecipeBetweenDate(userId, startDate, endDate);
         List<RecipeDto> dtos = RecipeMapper.INSTANCE.toDtoList(recipeList);
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping(value = "/{profilId}", params = {"cat"})
-    public ResponseEntity<List<RecipeDto>> getRecipesByCategory(@PathVariable("profilId") UUID profilId,
+    @GetMapping(value = "/{userId}", params = {"cat"})
+    public ResponseEntity<List<RecipeDto>> getRecipesByCategory(@PathVariable("userId") UUID userId,
                                                                 @RequestParam("cat")ERecipeCategory category){
-        List<Recipe> recipeList = this.serviceRecipe.getRecipeByCat(profilId, category);
+        List<Recipe> recipeList = this.serviceRecipe.getRecipeByCat(userId, category);
         List<RecipeDto> dtos = RecipeMapper.INSTANCE.toDtoList(recipeList);
         return ResponseEntity.ok(dtos);
     }

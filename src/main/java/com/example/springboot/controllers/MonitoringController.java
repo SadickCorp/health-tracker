@@ -1,13 +1,11 @@
 package com.example.springboot.controllers;
 
 import com.example.springboot.beans.Monitoring;
-import com.example.springboot.beans.Profil;
 import com.example.springboot.beans.User;
 import com.example.springboot.dto.MonitoringDto;
 import com.example.springboot.dto.light.LightMonitoringDto;
 import com.example.springboot.mappers.MonitoringMapper;
 import com.example.springboot.services.ServiceMonitoring;
-import com.example.springboot.services.ServiceProfil;
 import com.example.springboot.services.ServiceUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +22,9 @@ public class MonitoringController {
     private final ServiceUser serviceUser;
 
 
-    @GetMapping(value = "/{profilId}")
-    public ResponseEntity<List<MonitoringDto>> findMonitoringsByProfilId(@PathVariable("profilId") UUID profilId){
-        List<Monitoring> monitoringList = this.serviceMonitoring.getMonitoringByProfilId(profilId);
+    @GetMapping(value = "/{userId}")
+    public ResponseEntity<List<MonitoringDto>> findMonitoringsByUserId(@PathVariable("userId") UUID profilId){
+        List<Monitoring> monitoringList = this.serviceMonitoring.getMonitoringByUserId(profilId);
         List<MonitoringDto> dtos = MonitoringMapper.INSTANCE.toDtoList(monitoringList);
         return ResponseEntity.ok(dtos);
     }
