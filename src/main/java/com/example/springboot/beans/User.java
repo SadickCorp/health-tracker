@@ -9,6 +9,8 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +67,8 @@ public class User {
             this.setEmail(lightUserDto.getEmail());
         }
         if(lightUserDto.getPassword() != null){
-            this.setPassword(lightUserDto.getPassword());
+            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            this.setPassword(passwordEncoder.encode(lightUserDto.getPassword()));
         }
     }
 }

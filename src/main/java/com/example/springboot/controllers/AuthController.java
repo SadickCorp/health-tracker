@@ -45,7 +45,6 @@ public class AuthController {
         User user = UserMapper.INSTANCE.toBo(lightUserDto);
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        //TODO ajouter le role
         user = this.serviceUser.addUser(user);
         UserDto userDto = UserMapper.INSTANCE.toDto(user);
         return ResponseEntity.ok(userDto);
