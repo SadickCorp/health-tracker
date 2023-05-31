@@ -13,13 +13,13 @@ import java.util.UUID;
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
     @Query("SELECT r from Recipe r where r.user.id = ?1")
-    public List<Recipe> getRecipeByProfilId(UUID profilId);
+    public List<Recipe> getRecipeByUserId(UUID userId);
     @Query("SELECT r from Recipe r where r.user.id = ?1 and r.category = ?2")
-    public List<Recipe> getRecipeByCategory(UUID profilId, ERecipeCategory recipeCategory);
+    public List<Recipe> getRecipeByCategory(UUID userId, ERecipeCategory recipeCategory);
 
     @Query("SELECT r from Recipe r where r.user.id = ?1 and r.date = ?2")
-    public List<Recipe> getRecipeByDate(UUID profilId, LocalDate date);
+    public List<Recipe> getRecipeByDate(UUID userId, LocalDate date);
 
     @Query("SELECT r from Recipe r where r.user.id = ?1 and r.date >= ?2 and r.date <= ?3")
-    public List<Recipe> getRecipeBetweenDate(UUID profilId, LocalDate dateStart, LocalDate dateEnd);
+    public List<Recipe> getRecipeBetweenDate(UUID userId, LocalDate dateStart, LocalDate dateEnd);
 }

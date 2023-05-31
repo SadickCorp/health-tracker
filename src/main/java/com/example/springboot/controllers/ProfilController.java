@@ -10,11 +10,8 @@ import com.example.springboot.security.JwtProvider;
 import com.example.springboot.services.ServiceProfil;
 import com.example.springboot.services.ServiceUser;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -49,9 +46,9 @@ public class ProfilController {
         return ResponseEntity.ok(dto);
     }
 
-    @PatchMapping(value = "/{id}")
-    public ResponseEntity<ProfilDto> updateProfil(@PathVariable("id") UUID id, @RequestBody LightProfilDto lightProfilDto){
-        Profil update = this.serviceProfil.updateProfil(id, lightProfilDto);
+    @PatchMapping(value = "/{userId}")
+    public ResponseEntity<ProfilDto> updateProfil(@PathVariable("userId") UUID id, @RequestBody LightProfilDto lightProfilDto){
+        Profil update = this.serviceProfil.updateProfilByUserId(id, lightProfilDto);
         ProfilDto profilDto = ProfilMapper.INSTANCE.toDto(update);
         return ResponseEntity.ok(profilDto);
     }

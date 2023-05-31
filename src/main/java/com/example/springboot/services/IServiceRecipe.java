@@ -5,13 +5,12 @@ import com.example.springboot.dto.light.LightRecipeDto;
 import com.example.springboot.enums.ERecipeCategory;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 public interface IServiceRecipe {
     public Recipe getRecipeById(final UUID id);
-    public List<Recipe> geRecipesByProfilId(final UUID profilId);
+    public List<Recipe> getRecipesByUserId(final UUID userId);
     public Recipe addRecipe(final Recipe preceipe);
     public Recipe updateRecipe(final UUID id, final LightRecipeDto lightRecipeDto);
     public void deleteRecipe(final UUID id);

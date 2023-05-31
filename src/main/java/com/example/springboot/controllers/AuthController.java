@@ -49,6 +49,7 @@ public class AuthController {
         user = this.serviceUser.addUser(user);
         UserDto userDto = UserMapper.INSTANCE.toDto(user);
         return ResponseEntity.ok(userDto);
+
     }
 
 }

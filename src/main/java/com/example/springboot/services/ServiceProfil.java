@@ -31,8 +31,8 @@ public class ServiceProfil implements IServiceProfil{
         return this.profilRepository.saveAndFlush(pprofil);
     }
 
-    public Profil updateProfil(UUID id, LightProfilDto lightProfilDto) {
-        Profil pprofil = this.getProfil(id);
+    public Profil updateProfilByUserId(UUID id, LightProfilDto lightProfilDto) {
+        Profil pprofil = this.getProfilByUserId(id);
         pprofil.update(lightProfilDto);
 
         return this.profilRepository.saveAndFlush(pprofil);

@@ -17,8 +17,8 @@ public class ServiceMonitoring implements IServiceMonitoring{
     public ServiceMonitoring(MonitoringRepository monitoringRepository){
         this.monitoringRepository = monitoringRepository;
     }
-    public List<Monitoring> getMonitoringByProfilId(UUID id) {
-        return this.monitoringRepository.getMonitoringByIdProfil(id);
+    public List<Monitoring> getMonitoringByUserId(UUID id) {
+        return this.monitoringRepository.getMonitoringByIdUser(id);
     }
 
 

@@ -8,6 +8,6 @@ import java.util.UUID;
 public interface IServiceProfil {
     public Profil getProfil(final UUID id);
     public Profil addProfil(final Profil pprofil);
-    public Profil updateProfil(UUID id, final LightProfilDto lightProfilDto);
+    public Profil updateProfilByUserId(UUID id, final LightProfilDto lightProfilDto);
     public void deleteProfil(final UUID id);
 }

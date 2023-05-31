@@ -25,8 +25,8 @@ public class ServiceRecipe implements IServiceRecipe {
         return this.recipeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No entity found for " + id));
     }
 
-    public List<Recipe> geRecipesByProfilId(final UUID id) {
-        return this.recipeRepository.getRecipeByProfilId(id);
+    public List<Recipe> getRecipesByUserId(final UUID id) {
+        return this.recipeRepository.getRecipeByUserId(id);
     }
 
     public Recipe addRecipe(Recipe preceipe) {
@@ -43,18 +43,18 @@ public class ServiceRecipe implements IServiceRecipe {
         this.recipeRepository.deleteById(id);
     }
 
-    public List<Recipe> getRecipeByCat(final UUID profilId, final ERecipeCategory category) {
-        return this.recipeRepository.getRecipeByCategory(profilId, category);
+    public List<Recipe> getRecipeByCat(final UUID userId, final ERecipeCategory category) {
+        return this.recipeRepository.getRecipeByCategory(userId, category);
     }
 
     @Override
-    public List<Recipe> getRecipeBetweenDate(final UUID profilId, final LocalDate dateStart, final LocalDate dateEnd) {
-        return this.recipeRepository.getRecipeBetweenDate(profilId, dateStart, dateEnd);
+    public List<Recipe> getRecipeBetweenDate(final UUID userId, final LocalDate dateStart, final LocalDate dateEnd) {
+        return this.recipeRepository.getRecipeBetweenDate(userId, dateStart, dateEnd);
     }
 
     @Override
-    public List<Recipe> getRecipeByDate(final UUID profilId, LocalDate dateStart) {
-        return this.recipeRepository.getRecipeByDate(profilId, dateStart);
+    public List<Recipe> getRecipeByDate(final UUID userId, LocalDate dateStart) {
+        return this.recipeRepository.getRecipeByDate(userId, dateStart);
     }
 
 }
