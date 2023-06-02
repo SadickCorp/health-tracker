@@ -1,6 +1,7 @@
 package com.example.springboot.services;
 
 import com.example.springboot.beans.Goal;
+import com.example.springboot.beans.Monitoring;
 import com.example.springboot.dto.light.LightGoalDto;
 import com.example.springboot.repository.GoalRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,8 @@ import java.util.UUID;
 public class ServiceGoal implements IServiceGoal {
 
     private final GoalRepository goalRepository;
+    private final ServiceUser serviceUser;
+    private final ServiceMonitoring serviceMonitoring;
 
     public Goal getGoalById(UUID id) {
         return this.goalRepository.findById(id).orElse(null);
@@ -29,7 +32,13 @@ public class ServiceGoal implements IServiceGoal {
     }
 
     public Goal updateGoal(UUID id, LightGoalDto lightGoalDto) {
-        Goal goal = this.getGoalById(id);
+        Goal goal = this.getGoalByUserId(id);
+        if(goal.getActual_weight() != lightGoalDto.getActual_weight()){
+            Monitoring monitoring = new Monitoring();
+            monitoring.setWeight(lightGoalDto.getActual_weight());
+            monitoring.setUser(this.serviceUser.getUserById(id));
+            this.serviceMonitoring.addMonitoring(monitoring);
+        }
         goal.update(lightGoalDto);
         return this.goalRepository.saveAndFlush(goal);
     }
