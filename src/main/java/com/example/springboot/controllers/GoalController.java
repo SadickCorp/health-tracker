@@ -38,8 +38,8 @@ public class GoalController {
         return ResponseEntity.ok(dto);
     }
 
-    @PatchMapping(value="/{id}")
-    public ResponseEntity<GoalDto> updateGoal(@PathVariable("id") UUID id, @RequestBody LightGoalDto lightGoalDto){
+    @PatchMapping(value="/{userId}")
+    public ResponseEntity<GoalDto> updateGoal(@PathVariable("userId") UUID id, @RequestBody LightGoalDto lightGoalDto){
         Goal update = this.serviceGoal.updateGoal(id, lightGoalDto);
         GoalDto goalDto = GoalMapper.INSTANCE.toDto(update);
         return ResponseEntity.ok(goalDto);
