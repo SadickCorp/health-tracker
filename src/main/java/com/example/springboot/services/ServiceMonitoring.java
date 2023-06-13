@@ -23,7 +23,7 @@ public class ServiceMonitoring implements IServiceMonitoring{
                 this.monitoringRepository.getMonitoringByIdUser(id)
         );
     }
-    
+
     public Monitoring addMonitoring(Monitoring monitoring) {
         return this.monitoringRepository.save(monitoring);
     }
