@@ -23,19 +23,11 @@ public class MonitoringController {
 
 
     @GetMapping(value = "/{userId}")
-    public ResponseEntity<List<MonitoringDto>> findMonitoringsByUserId(@PathVariable("userId") UUID profilId){
-        List<Monitoring> monitoringList = this.serviceMonitoring.getMonitoringByUserId(profilId);
-        List<MonitoringDto> dtos = MonitoringMapper.INSTANCE.toDtoList(monitoringList);
-        return ResponseEntity.ok(dtos);
+    public ResponseEntity<List<MonitoringDto>> findMonitoringsByUserId(@PathVariable("userId") UUID userId){
+        return ResponseEntity
+                .ok()
+                .body(this.serviceMonitoring.getMonitoringByUserId(userId));
     }
 
-    @PostMapping
-    public ResponseEntity<MonitoringDto> createMonitoring(@RequestBody LightMonitoringDto lightMonitoringDto){
-        Monitoring monitoring = MonitoringMapper.INSTANCE.toBo(lightMonitoringDto);
-        User user = this.serviceUser.getUserById(lightMonitoringDto.getUser_id());
-        monitoring.setUser(user);
-        monitoring = this.serviceMonitoring.addMonitoring(monitoring);
-        MonitoringDto monitoringDto = MonitoringMapper.INSTANCE.toDto(monitoring);
-        return ResponseEntity.ok(monitoringDto);
-    }
+
 }

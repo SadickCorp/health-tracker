@@ -3,6 +3,8 @@ package com.example.springboot.services;
 import com.example.springboot.beans.Goal;
 import com.example.springboot.beans.Profil;
 import com.example.springboot.beans.Recipe;
+import com.example.springboot.dto.GoalDto;
+import com.example.springboot.mappers.GoalMapper;
 import com.example.springboot.utils.CaloriesCalculator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,7 @@ public class CaloriesService {
 
     public double getGoalCaloriesEstimation(UUID userId) {
         Profil profil = this.serviceProfil.getProfilByUserId(userId);
-        Goal goal = this.serviceGoal.getGoalByUserId(userId);
+        GoalDto goal = this.serviceGoal.getGoalByUserId(userId);
         return this.caloriesCalculator.goalCaloriesEstimation(profil, goal);
     }
 
