@@ -20,18 +20,6 @@ public class FoodComposition {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-//    @Column(name = "glucides")
-//    private double glucides;
-//
-//    @Column(name = "lipides")
-//    private double lipides;
-//
-//    @Column(name = "proteins")
-//    private double proteins;
-//
-//    @Column(name = "sugar")
-//    private double sugar;
-
     @Column(name = "name")
     private String name;
 

@@ -19,29 +19,26 @@ import java.util.UUID;
 public class GoalController {
 
     private final ServiceGoal serviceGoal;
-    private final ServiceUser serviceUser;
 
     @PostMapping
     public ResponseEntity<GoalDto> create(@RequestBody LightGoalDto dto){
-        Goal goal = GoalMapper.INSTANCE.toBo(dto);
-        User user = this.serviceUser.getUserById(dto.getUser_id());
-        goal.setUser(user);
-        goal = this.serviceGoal.addGoal(goal);
-        GoalDto goalDto = GoalMapper.INSTANCE.toDto(goal);
-        return ResponseEntity.ok(goalDto);
+        return ResponseEntity
+                .ok()
+                .body(this.serviceGoal.addGoal(dto));
     }
 
     @GetMapping(value = "/{userId}")
     public ResponseEntity<GoalDto> findGoalByProfilId(@PathVariable("userId") UUID idUser){
-        Goal goal = this.serviceGoal.getGoalByUserId(idUser);
-        GoalDto dto = GoalMapper.INSTANCE.toDto(goal);
-        return ResponseEntity.ok(dto);
+
+        return ResponseEntity
+                .ok()
+                .body(this.serviceGoal.getGoalByUserId(idUser));
     }
 
     @PatchMapping(value="/{userId}")
     public ResponseEntity<GoalDto> updateGoal(@PathVariable("userId") UUID id, @RequestBody LightGoalDto lightGoalDto){
-        Goal update = this.serviceGoal.updateGoal(id, lightGoalDto);
-        GoalDto goalDto = GoalMapper.INSTANCE.toDto(update);
-        return ResponseEntity.ok(goalDto);
+        return ResponseEntity
+                .ok()
+                .body(this.serviceGoal.updateGoal(id, lightGoalDto));
     }
 }

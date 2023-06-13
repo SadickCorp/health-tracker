@@ -4,6 +4,7 @@ import com.example.springboot.beans.Food;
 import com.example.springboot.beans.Goal;
 import com.example.springboot.beans.Profil;
 import com.example.springboot.beans.Recipe;
+import com.example.springboot.dto.GoalDto;
 import com.example.springboot.enums.EUserSexe;
 import com.example.springboot.services.ServiceGoal;
 import com.example.springboot.services.ServiceProfil;
@@ -29,7 +30,7 @@ public class CaloriesCalculator {
         return Period.between(birth, currentDate).getYears();
     }
 
-    public double goalCaloriesEstimation(Profil profil, Goal goal){
+    public double goalCaloriesEstimation(Profil profil, GoalDto goal){
         boolean isPositiveGoal = goal.getActual_weight() < goal.getGoal_weight();
         boolean isGoalAchieved = goal.getActual_weight() == goal.getGoal_weight();
         if(isGoalAchieved) {
