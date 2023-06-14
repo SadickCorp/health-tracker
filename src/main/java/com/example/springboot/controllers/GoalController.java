@@ -28,17 +28,24 @@ public class GoalController {
     }
 
     @GetMapping(value = "/{userId}")
-    public ResponseEntity<GoalDto> findGoalByProfilId(@PathVariable("userId") UUID idUser){
+    public ResponseEntity<GoalDto> findGoalByProfilId(
+            @RequestHeader (name="Authorization") String token,
+            @PathVariable("userId") UUID idUser
+    ){
 
         return ResponseEntity
                 .ok()
-                .body(this.serviceGoal.getGoalByUserId(idUser));
+                .body(this.serviceGoal.getGoalByUserId(idUser, token));
     }
 
     @PatchMapping(value="/{userId}")
-    public ResponseEntity<GoalDto> updateGoal(@PathVariable("userId") UUID id, @RequestBody LightGoalDto lightGoalDto){
+    public ResponseEntity<GoalDto> updateGoal(
+            @RequestHeader (name="Authorization") String token,
+            @PathVariable("userId") UUID id,
+            @RequestBody LightGoalDto lightGoalDto
+    ){
         return ResponseEntity
                 .ok()
-                .body(this.serviceGoal.updateGoal(id, lightGoalDto));
+                .body(this.serviceGoal.updateGoal(id, lightGoalDto, token));
     }
 }
