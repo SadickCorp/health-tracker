@@ -7,6 +7,7 @@ import com.example.springboot.dto.GoalDto;
 import com.example.springboot.dto.light.LightGoalDto;
 import com.example.springboot.mappers.GoalMapper;
 import com.example.springboot.repository.GoalRepository;
+import com.example.springboot.security.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,12 @@ public class ServiceGoal implements IServiceGoal {
     private final GoalRepository goalRepository;
     private final ServiceUser serviceUser;
     private final ServiceMonitoring serviceMonitoring;
+    private final JwtProvider tokenProvider;
 
-    public GoalDto getGoalByUserId(UUID id) {
+    public GoalDto getGoalByUserId(UUID id, String token) {
+        if(!tokenProvider.isUserToken(id, token)) {
+            throw new IllegalArgumentException("Impossible d'accèder a cette ressource: Id invalide}");
+        }
         return  GoalMapper.INSTANCE.toDto(
                 this.goalRepository.getGoalByUserId(id)
         );
@@ -39,7 +44,10 @@ public class ServiceGoal implements IServiceGoal {
         return GoalMapper.INSTANCE.toDto(goal);
     }
 
-    public GoalDto updateGoal(UUID id, LightGoalDto lightGoalDto) {
+    public GoalDto updateGoal(UUID id, LightGoalDto lightGoalDto, String token) {
+        if(!tokenProvider.isUserToken(id, token)) {
+            throw new IllegalArgumentException("Impossible d'accèder a cette ressource: Id invalide}");
+        }
         Goal goal = this.goalRepository.getGoalByUserId(id);
         if(goal.getActual_weight() != lightGoalDto.getActual_weight()){
             Monitoring monitoring = new Monitoring();

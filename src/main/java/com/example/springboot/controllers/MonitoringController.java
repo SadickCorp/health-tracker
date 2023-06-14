@@ -21,10 +21,13 @@ public class MonitoringController {
     private final ServiceMonitoring serviceMonitoring;
 
     @GetMapping(value = "/{userId}")
-    public ResponseEntity<List<MonitoringDto>> findMonitoringsByUserId(@PathVariable("userId") UUID userId){
+    public ResponseEntity<List<MonitoringDto>> findMonitoringsByUserId(
+            @RequestHeader (name="Authorization") String token,
+            @PathVariable("userId") UUID userId
+    ) throws IllegalAccessException {
         return ResponseEntity
                 .ok()
-                .body(this.serviceMonitoring.getMonitoringByUserId(userId));
+                .body(this.serviceMonitoring.getMonitoringByUserId(userId, token));
     }
 
 }

@@ -68,6 +68,11 @@ public class JwtProvider {
 
     }
 
+    public boolean isUserToken(UUID id, String token){
+        UUID idUser = this.getUserIdFromJWT(token.substring(7));
+        return idUser.equals(id);
+    }
+
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
         return Keys.hmacShaKeyFor(keyBytes);
