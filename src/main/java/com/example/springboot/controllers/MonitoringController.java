@@ -24,7 +24,7 @@ public class MonitoringController {
     public ResponseEntity<List<MonitoringDto>> findMonitoringsByUserId(
             @RequestHeader (name="Authorization") String token,
             @PathVariable("userId") UUID userId
-    ) throws IllegalAccessException {
+    ) {
         return ResponseEntity
                 .ok()
                 .body(this.serviceMonitoring.getMonitoringByUserId(userId, token));
