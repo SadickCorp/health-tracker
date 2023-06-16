@@ -32,7 +32,7 @@ public class ApiService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        JSONObject documentObj = new JSONObject(response.body().toString());
+        JSONObject documentObj = new JSONObject(response.body());
         JSONArray items = documentObj.getJSONArray("items");
         Gson gson = new Gson();
         return gson.fromJson(String.valueOf(items.get(0)), ApiFoodCompositionDto.class);
