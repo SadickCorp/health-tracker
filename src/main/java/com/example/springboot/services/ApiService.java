@@ -13,9 +13,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Service
 public class ApiService {
@@ -34,11 +31,10 @@ public class ApiService {
                 .GET()
                 .build();
 
-        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         JSONObject documentObj = new JSONObject(response.body().toString());
         JSONArray items = documentObj.getJSONArray("items");
         Gson gson = new Gson();
-        ApiFoodCompositionDto fdto = gson.fromJson(String.valueOf(items.get(0)), ApiFoodCompositionDto.class);
-        return fdto;
+        return gson.fromJson(String.valueOf(items.get(0)), ApiFoodCompositionDto.class);
     }
 }

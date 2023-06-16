@@ -56,8 +56,6 @@ public class RecipeController {
         return ResponseEntity.ok(dtos);
     }
 
-    //TODO get par categorie et date
-
     @PostMapping
     public ResponseEntity<RecipeDto> createRecipe(@RequestBody LightRecipeDto lightRecipeDto){
         Recipe recipe = RecipeMapper.INSTANCE.toBo(lightRecipeDto);

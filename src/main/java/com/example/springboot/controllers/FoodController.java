@@ -61,7 +61,7 @@ public class FoodController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") UUID id){
+    public ResponseEntity delete(@PathVariable("id") UUID id){
         this.serviceFood.deleteFood(id);
         return ResponseEntity.noContent().build();
     }
