@@ -7,7 +7,6 @@ import com.example.springboot.dto.light.LightFoodDto;
 import com.example.springboot.mappers.FoodMapper;
 import com.example.springboot.services.ServiceFood;
 import com.example.springboot.services.ServiceRecipe;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,9 +60,9 @@ public class FoodController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity delete(@PathVariable("id") UUID id){
+    public ResponseEntity<Boolean> delete(@PathVariable("id") UUID id){
         this.serviceFood.deleteFood(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().body(true);
     }
 
 
