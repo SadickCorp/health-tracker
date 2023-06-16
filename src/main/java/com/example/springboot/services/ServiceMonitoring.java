@@ -26,7 +26,7 @@ public class ServiceMonitoring implements IServiceMonitoring{
                     this.monitoringRepository.getMonitoringByIdUser(id)
             );
         }else {
-            throw new IllegalArgumentException("Impossible d'accèder a cette ressource: Id invalide}");
+            throw new IllegalArgumentException("Impossible d'accèder a cette ressource: Id invalide");
         }
 
     }

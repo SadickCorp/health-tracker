@@ -28,9 +28,9 @@ public class CaloriesService {
         return this.caloriesCalculator.dailyCalorieEstimation(profil);
     }
 
-    public double getGoalCaloriesEstimation(UUID userId) {
+    public double getGoalCaloriesEstimation(UUID userId, String token) {
         Profil profil = this.serviceProfil.getProfilByUserId(userId);
-        GoalDto goal = this.serviceGoal.getGoalByUserId(userId);
+        GoalDto goal = this.serviceGoal.getGoalByUserId(userId, token);
         return this.caloriesCalculator.goalCaloriesEstimation(profil, goal);
     }
 
